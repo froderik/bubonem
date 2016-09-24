@@ -1,0 +1,13 @@
+- departures = data["Departures"]
+- stop_name = data["Title"]
+- time = data["CurrentServerTime"]
+
+.stop_header
+  %span.time= time
+  %span.stop_name= stop_name
+.departures
+  - departures.each do |one_departure|
+    .one_departure
+      %span.arrival_time= one_departure['DisplayTime']
+      %span.line= one_departure['LineNumber']
+      %span.destination= one_departure['Destination']      

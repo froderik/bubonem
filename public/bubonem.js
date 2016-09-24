@@ -2,7 +2,7 @@
 
 var content_magic = function(name) {
     $.get('/' + name, function(response) {
-	$('.' + name).text(response);
+	$('.' + name).html(response);
     });
 };
 
