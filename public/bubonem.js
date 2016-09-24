@@ -1,15 +1,15 @@
-var start_reloader = function(name) {
-    var http_request = new XMLHttpRequest();
-    http_request.onreadystatechange = function(){
-	alert(http_request.responseText);
+
+
+var content_magic = function(name) {
+    $.get('/' + name, function(response) {
+	$('.' + name).text(response);
+    });
+};
+
+$(function() {
+    let parts = ['edsbergsskolan', 'axroad'];
+    for(let one_part of parts) {
+	content_magic(one_part);
     };
-    http_request.open("GET", "/" + name, false);
-    http_request.send();
-};
+});
 
-var setup_some_stuff = function() {
-    start_reloader('edsbergsskolan');
-    alert("reloader started");
-};
-
-window.onload = setup_some_stuff;
