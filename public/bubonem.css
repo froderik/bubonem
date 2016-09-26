@@ -1,0 +1,10 @@
+
+body {
+		background-color: black;
+		color: white;
+		height: 800px;
+}
+
+.quarter {
+		height: 50%;
+}
