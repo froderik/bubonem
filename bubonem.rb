@@ -16,6 +16,10 @@ class Bubonem < Sinatra::Base
     present_stop_information 5515
   end
 
+  get '/weather_forecast' do
+    "weather!"
+  end
+
   def present_stop_information stop_id
     response = RestClient.get "http://sl.se/api/sv/RealTime/GetDepartures/#{stop_id}"
     the_data = JSON.parse(response)["data"]["BusGroups"].first

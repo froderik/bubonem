@@ -1,10 +1,26 @@
 
 body {
-		background-color: black;
-		color: white;
-		height: 800px;
+    background-color: black;
+    color: white;
+    height: 800px;
+    font-family: 'Fira Mono', monospaced;
+    font-size: 20px;
+}
+
+.all {
+    display: flex;
 }
 
 .quarter {
-		height: 50%;
+    height: 50%;
+    margin: 10px;
 }
+
+.stop_header {
+    font-size: 36px;
+}
+
+td {
+    padding-right: 30px;
+}
+

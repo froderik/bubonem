@@ -7,7 +7,7 @@ var content_magic = function(name) {
 };
 
 $(function() {
-    let parts = ['edsbergsskolan', 'axroad'];
+    let parts = ['edsbergsskolan', 'axroad', 'weather_forecast'];
     for(let one_part of parts) {
 	content_magic(one_part);
     };
