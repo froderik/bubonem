@@ -6,8 +6,9 @@
   %span.time= time
   %span.stop_name= stop_name
 .departures
-  - departures.each do |one_departure|
-    .one_departure
-      %span.arrival_time= one_departure['DisplayTime']
-      %span.line= one_departure['LineNumber']
-      %span.destination= one_departure['Destination']      
+  %table
+    - departures.each do |one_departure|
+      %tr.one_departure
+        %td.arrival_time= one_departure['DisplayTime']
+        %td.line= one_departure['LineNumber']
+        %td.destination= one_departure['Destination']      
