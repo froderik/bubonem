@@ -25,18 +25,38 @@ class Bubonem < Sinatra::Base
   
   def present_stop_information stop_id
     response = RestClient.get "http://sl.se/api/sv/RealTime/GetDepartures/#{stop_id}"
-    the_data = JSON.parse(response)["data"]["BusGroups"].first
+    the_data = JSON.parse(response)['data']['BusGroups'].first
     haml :stop_information, locals: { data: the_data }
   end
 
 
   # weather forecast
 
+  OneForecast = Struct.new(:time, :celsius, :symbol)
+
   def present_weather_forecast
     # documentation here: http://opendata.smhi.se/apidocs/metfcst/index.html
     response = RestClient.get 'http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/17.96/lat/59.44/data.json'
-    the_data = JSON.parse(response)
-    haml :forecast, locals: { data: the_data }
+    the_data = JSON.parse response
+    list_of_forecasts = parse_raw_into_forecasts the_data
+    haml :forecast, locals: { data: list_of_forecasts }
+  end
+
+  def parse_raw_into_forecasts smhi_data
+    time_series = smhi_data['timeSeries']
+    time_series.map do |one_point_in_time|
+      params = one_point_in_time['parameters']
+      forecast = OneForecast.new
+      forecast.time = one_point_in_time['validTime']
+      forecast.celsius = find_value 't', params
+      forecast.symbol = find_value 'Wsymb', params
+      forecast
+    end
+  end
+
+  def find_value name, params
+    the_one = params.detect { |p| p['name'] == name }
+    the_one['values'].first
   end
   
 end
