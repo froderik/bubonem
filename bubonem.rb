@@ -33,6 +33,7 @@ class Bubonem < Sinatra::Base
   # weather forecast
 
   def present_weather_forecast
+    # documentation here: http://opendata.smhi.se/apidocs/metfcst/index.html
     response = RestClient.get 'http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/17.96/lat/59.44/data.json'
     the_data = JSON.parse(response)
     haml :forecast, locals: { data: the_data }
