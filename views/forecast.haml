@@ -1,4 +1,9 @@
-- data.each do |one_forecast|
-  = one_forecast.time
-  = one_forecast.celsius
-  = one_forecast.symbol
+%table
+  - data.each do |one_forecast|
+    %tr
+      %td
+        = one_forecast.time 
+      %td
+        = one_forecast.celsius
+      %td
+        = one_forecast.symbol

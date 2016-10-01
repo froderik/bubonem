@@ -47,7 +47,7 @@ class Bubonem < Sinatra::Base
     time_series.map do |one_point_in_time|
       params = one_point_in_time['parameters']
       forecast = OneForecast.new
-      forecast.time = one_point_in_time['validTime']
+      forecast.time = DateTime.parse one_point_in_time['validTime']
       forecast.celsius = find_value 't', params
       forecast.symbol = find_value 'Wsymb', params
       forecast
