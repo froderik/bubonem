@@ -2,6 +2,12 @@
 require 'sinatra'
 require 'json'
 
+class DateTime
+  def is_future?
+    self > DateTime.now
+  end
+end
+
 class Bubonem < Sinatra::Base
 
   get '/' do
@@ -44,7 +50,7 @@ class Bubonem < Sinatra::Base
 
   def parse_raw_into_forecasts smhi_data
     time_series = smhi_data['timeSeries']
-    time_series.map do |one_point_in_time|
+    all_forecasts = time_series.map do |one_point_in_time|
       params = one_point_in_time['parameters']
       forecast = OneForecast.new
       forecast.time = DateTime.parse one_point_in_time['validTime']
@@ -52,6 +58,9 @@ class Bubonem < Sinatra::Base
       forecast.symbol = find_value 'Wsymb', params
       forecast
     end
+
+    future_forecasts = all_forecasts.select { |forecast| forecast.time.is_future? }
+    future_forecasts[0..20]
   end
 
   def find_value name, params
