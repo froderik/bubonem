@@ -1,9 +1,9 @@
 %table
   - data.each do |one_forecast|
     %tr
-      %td.time
+      %td.time.number
         = "#{one_forecast.time.hour}:00"
-      %td.celsius
+      %td.celsius.number
         = "#{one_forecast.celsius} °C"
       %td.symbol
         %img{ src: "http://www.smhi.se/wpt-a/startpage/images/WPT-icons/weathersymbols/80x60/day/#{one_forecast.symbol}.png" }
