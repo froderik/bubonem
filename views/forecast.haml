@@ -2,7 +2,7 @@
   - data.each do |one_forecast|
     %tr
       %td.time.number
-        = "#{one_forecast.time.hour}:00"
+        = "#{one_forecast.time.in_stockholm.hour}:00"
       %td.celsius.number
         = "#{one_forecast.celsius} °C"
       %td.symbol

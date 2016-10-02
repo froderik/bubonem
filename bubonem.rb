@@ -6,6 +6,14 @@ class DateTime
   def is_future?
     self > DateTime.now
   end
+
+  def in_stockholm
+    sthlm_zone.utc_to_local self
+  end
+
+  def sthlm_zone
+    sthlm_zone = TZInfo::Timezone.get 'Europe/Stockholm'
+  end
 end
 
 class Bubonem < Sinatra::Base
@@ -53,7 +61,7 @@ class Bubonem < Sinatra::Base
     all_forecasts = time_series.map do |one_point_in_time|
       params = one_point_in_time['parameters']
       forecast = OneForecast.new
-      forecast.time = DateTime.parse one_point_in_time['validTime']
+      forecast.time = DateTime.parse( one_point_in_time['validTime'] )
       forecast.celsius = find_value 't', params
       forecast.symbol = find_value 'Wsymb', params
       forecast
