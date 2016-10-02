@@ -25,5 +25,9 @@ td {
 }
 
 .number {
-		text-align: right;
+    text-align: right;
+}
+
+.symbol img {
+    width: 50px;
 }
