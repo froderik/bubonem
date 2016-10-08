@@ -2,6 +2,9 @@
 require 'sinatra'
 require 'json'
 
+LON = '17.96'
+LAT = '59.44'
+
 class DateTime
   def is_future?
     self > DateTime.now
@@ -48,9 +51,13 @@ class Bubonem < Sinatra::Base
 
   OneForecast = Struct.new(:time, :celsius, :symbol)
 
+  def weather_url
+    "http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/#{LON}/lat/#{LAT}/data.json"
+  end
+
   def present_weather_forecast
     # documentation here: http://opendata.smhi.se/apidocs/metfcst/index.html
-    response = RestClient.get 'http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/17.96/lat/59.44/data.json'
+    response = RestClient.get weather_url
     the_data = JSON.parse response
     list_of_forecasts = parse_raw_into_forecasts the_data
     haml :forecast, locals: { data: list_of_forecasts }
