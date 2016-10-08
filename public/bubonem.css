@@ -11,8 +11,11 @@ body {
     display: flex;
 }
 
-.quarter {
+section {
     margin: 10px;
+		padding: 20px;
+		background-color: darkred;
+		border-radius: 20px;
 }
 
 .stop_header {
@@ -29,4 +32,8 @@ td {
 
 .symbol img {
     width: 40px;
+}
+
+.weather_forecast {
+		background-color: darkgreen;
 }
