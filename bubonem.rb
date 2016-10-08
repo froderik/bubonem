@@ -76,7 +76,11 @@ class Bubonem < Sinatra::Base
 
   # weather forecast
 
-  OneForecast = Struct.new :time, :celsius, :symbol, :day_or_night
+  OneForecast = Struct.new :time, :celsius, :symbol do
+    def day_or_night
+      time.day_or_night?
+    end
+  end
 
   def weather_url
     "http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/#{LON}/lat/#{LAT}/data.json"
@@ -98,7 +102,6 @@ class Bubonem < Sinatra::Base
       forecast.time = DateTime.parse( one_point_in_time['validTime'] )
       forecast.celsius = find_value 't', params
       forecast.symbol = find_value 'Wsymb', params
-      forecast.day_or_night = forecast.time.day_or_night?
       forecast
     end
 
