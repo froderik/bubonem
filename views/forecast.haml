@@ -4,6 +4,6 @@
       %td.time.number
         = "#{one_forecast.time.in_stockholm.hour}:00"
       %td.celsius.number
-        = "#{one_forecast.celsius} °C"
+        = "#{one_forecast.celsius.round} °C"
       %td.symbol
-        %img{ src: "http://www.smhi.se/wpt-a/startpage/images/WPT-icons/weathersymbols/80x60/day/#{one_forecast.symbol}.png" }
+        %img{ src: "/weathersymbols/day/#{one_forecast.symbol}.png" }
