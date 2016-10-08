@@ -6,4 +6,4 @@
       %td.celsius.number
         = "#{one_forecast.celsius.round} °C"
       %td.symbol
-        %img{ src: "/weathersymbols/day/#{one_forecast.symbol}.png" }
+        %img{ src: "/weathersymbols/#{one_forecast.day_or_night}/#{one_forecast.symbol}.png" }

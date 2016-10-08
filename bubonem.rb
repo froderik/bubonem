@@ -1,11 +1,30 @@
 # coding: utf-8
 require 'sinatra'
 require 'json'
+require 'solareventcalculator'
+
 
 LON = '17.96'
 LAT = '59.44'
+ZONE = 'Europe/Stockholm'
+
+module SunMachine
+  def sunrise
+    sun_machine.compute_civil_sunrise ZONE
+  end
+
+  def sunset
+    sun_machine.compute_civil_sunset ZONE
+  end
+
+  def sun_machine
+    SolarEventCalculator.new Date.today, BigDecimal.new(LAT), BigDecimal.new(LON)
+  end
+end
 
 class DateTime
+  include SunMachine
+  
   def is_future?
     self > DateTime.now
   end
@@ -15,7 +34,15 @@ class DateTime
   end
 
   def sthlm_zone
-    sthlm_zone = TZInfo::Timezone.get 'Europe/Stockholm'
+    sthlm_zone = TZInfo::Timezone.get ZONE
+  end
+
+  def day_or_night?
+    if self > sunrise and self < sunset
+      :day
+    else
+      :night
+    end
   end
 end
 
@@ -49,7 +76,7 @@ class Bubonem < Sinatra::Base
 
   # weather forecast
 
-  OneForecast = Struct.new(:time, :celsius, :symbol)
+  OneForecast = Struct.new :time, :celsius, :symbol, :day_or_night
 
   def weather_url
     "http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/#{LON}/lat/#{LAT}/data.json"
@@ -71,6 +98,7 @@ class Bubonem < Sinatra::Base
       forecast.time = DateTime.parse( one_point_in_time['validTime'] )
       forecast.celsius = find_value 't', params
       forecast.symbol = find_value 'Wsymb', params
+      forecast.day_or_night = forecast.time.day_or_night?
       forecast
     end
 
