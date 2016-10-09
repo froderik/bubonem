@@ -3,19 +3,27 @@ body {
     background-color: black;
     color: white;
     height: 800px;
-    font-family: 'Fira Mono', monospaced;
+    font-family: 'Fira Mono', 'Courier New',  monospaced;
     font-size: 20px;
 }
 
-.all {
+.all, .main {
     display: flex;
 }
 
-section {
+.all {
+    flex-direction: column;
+}
+
+section, header {
     margin: 10px;
 		padding: 20px;
 		background-color: darkred;
 		border-radius: 20px;
+}
+
+header {
+    background-color: darkblue;		
 }
 
 .stop_header {
@@ -36,4 +44,8 @@ td {
 
 .weather_forecast {
 		background-color: darkgreen;
+}
+
+.sun {
+		float: right;
 }

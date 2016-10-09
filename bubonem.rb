@@ -44,9 +44,14 @@ class DateTime
       :night
     end
   end
+
+  def viewable_time_of_day
+    "#{self.hour}:#{self.minute}"
+  end
 end
 
 class Bubonem < Sinatra::Base
+  include SunMachine
 
   get '/' do
     haml :index

@@ -10,8 +10,14 @@
     %script{ src: 'bubonem.js' }
   %body
     .all
-      .left
-        %section.edsbergsskolan
-        %section.axroad
-      .right
-        %section.weather_forecast
+      %header
+        %span.time
+          2016-10-09 15:51
+        %span.sun
+          = "up: #{sunrise.viewable_time_of_day} &middot; down: #{sunset.viewable_time_of_day}"
+      .main
+        .column
+          %section.edsbergsskolan
+          %section.axroad
+        .column
+          %section.weather_forecast
