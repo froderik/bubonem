@@ -1,4 +1,9 @@
 
+var wave_the_staff = function(name) {
+    return function() {
+	content_magic(name);
+    };
+}
 
 var content_magic = function(name) {
     $.get('/' + name, function(response) {
@@ -9,7 +14,9 @@ var content_magic = function(name) {
 $(function() {
     let parts = ['edsbergsskolan', 'axroad', 'weather_forecast'];
     for(let one_part of parts) {
-        content_magic(one_part);
+	var staff_of_content = wave_the_staff(one_part);
+	staff_of_content();
+	window.setTimeout( staff_of_content, 1000 );
     };
 });
 
