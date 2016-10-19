@@ -17,9 +17,9 @@
           = "up: #{sunrise.viewable_time_of_day} &middot; down: #{sunset.viewable_time_of_day}"
       .main
         .column
-          %section.edsbergsskolan
-          %section.axroad
+          %section.edsbergsskolan{ 'data-timeout': 1 }
+          %section.axroad{ 'data-timeout': 1 }
         .column
-          %section.weather_forecast
+          %section.weather_forecast{ 'data-timeout': 60 }
         .column
           %iframe{ src: 'https://trafiken.nu/stockholm/#fullscreen', width: 1000, height: 1000 }

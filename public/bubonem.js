@@ -14,9 +14,11 @@ var content_magic = function(name) {
 $(function() {
     let parts = ['edsbergsskolan', 'axroad', 'weather_forecast'];
     for(let one_part of parts) {
+        var timeout_minutes = $('.' + one_part).attr('data-timeout');
+        var timeout_millis = parseInt( timeout_minutes ) * 60 * 1000;
         var staff_of_content = wave_the_staff(one_part);
         staff_of_content();
-        window.setTimeout( staff_of_content, 1000 );
+        window.setTimeout( staff_of_content, timeout_millis );
     };
 });
 
