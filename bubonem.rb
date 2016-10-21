@@ -46,7 +46,7 @@ class DateTime
   end
 
   def viewable_time_of_day
-    "#{self.hour}:#{self.minute}"
+    strftime '%k:%M'
   end
 end
 
@@ -67,6 +67,10 @@ class Bubonem < Sinatra::Base
 
   get '/weather_forecast' do
     present_weather_forecast
+  end
+
+  get '/current_time' do
+    DateTime.now.in_stockholm.strftime '%Y-%m-%d %k:%M'
   end
 
 

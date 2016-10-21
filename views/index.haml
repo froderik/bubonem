@@ -11,8 +11,7 @@
   %body
     .all
       %header
-        %span.time
-          2016-10-09 15:51
+        %span.current_time{ 'data-timeout': 1 }
         %span.sun
           = "up: #{sunrise.viewable_time_of_day} &middot; down: #{sunset.viewable_time_of_day}"
       .main
