@@ -8,3 +8,7 @@ bubonem
 # make caching
 nimcache
 
+# unicorn
+log
+tmp
+
