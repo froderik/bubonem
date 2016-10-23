@@ -1,7 +1,10 @@
 
 var wave_the_staff = function(name) {
     return function() {
+        var timeout_minutes = $('.' + name).attr('data-timeout');
+        var timeout_millis = parseInt( timeout_minutes ) * 60 * 1000;
         content_magic(name);
+        window.setTimeout( wave_the_staff(name), timeout_millis );
     };
 }
 
@@ -14,11 +17,7 @@ var content_magic = function(name) {
 $(function() {
     let parts = ['edsbergsskolan', 'axroad', 'weather_forecast', 'current_time'];
     for(let one_part of parts) {
-        var timeout_minutes = $('.' + one_part).attr('data-timeout');
-        var timeout_millis = parseInt( timeout_minutes ) * 60 * 1000;
-        var staff_of_content = wave_the_staff(one_part);
-        staff_of_content();
-        window.setTimeout( staff_of_content, timeout_millis );
+        wave_the_staff(one_part)();
     };
 });
 
