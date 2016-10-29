@@ -9,16 +9,16 @@ LAT = '59.44'
 ZONE = 'Europe/Stockholm'
 
 module SunMachine
-  def sunrise
-    sun_machine.compute_civil_sunrise ZONE
+  def sunrise date = Date.today
+    sun_machine(date).compute_official_sunrise ZONE
   end
 
-  def sunset
-    sun_machine.compute_civil_sunset ZONE
+  def sunset date = Date.today
+    sun_machine(date).compute_official_sunset ZONE
   end
 
-  def sun_machine
-    SolarEventCalculator.new Date.today, BigDecimal.new(LAT), BigDecimal.new(LON)
+  def sun_machine date
+    SolarEventCalculator.new date, BigDecimal.new(LAT), BigDecimal.new(LON)
   end
 end
 
@@ -37,12 +37,12 @@ class DateTime
     sthlm_zone = TZInfo::Timezone.get ZONE
   end
 
+  def sun_is_up?
+    self > sunrise(self.to_date) and self < sunset(self.to_date)
+  end
+
   def day_or_night?
-    if self > sunrise and self < sunset
-      :day
-    else
-      :night
-    end
+    sun_is_up? ? :day : :night
   end
 
   def viewable_time_of_day
