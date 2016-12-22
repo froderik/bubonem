@@ -43,7 +43,7 @@ td {
     width: 40px;
 }
 
-.weather_forecast {
+#weather_forecast {
     background-color: darkgreen;
 }
 
@@ -51,6 +51,6 @@ td {
     float: right;
 }
 
-.traffic_map {
+#traffic_map {
     background-color: darkseagreen;
 }
