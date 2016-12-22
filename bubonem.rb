@@ -73,6 +73,10 @@ class Bubonem < Sinatra::Base
     DateTime.now.in_stockholm.strftime '%Y-%m-%d %k:%M'
   end
 
+  get '/sun' do
+    "up: #{sunrise.viewable_time_of_day} &middot; down: #{sunset.viewable_time_of_day}"
+  end
+
 
   # bus information
   

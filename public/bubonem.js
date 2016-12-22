@@ -15,7 +15,7 @@ var content_magic = function(name) {
 };
 
 $(function() {
-    let parts = ['edsbergsskolan', 'axroad', 'weather_forecast', 'current_time'];
+    let parts = ['edsbergsskolan', 'axroad', 'weather_forecast', 'current_time', 'sun'];
     for(let one_part of parts) {
         wave_the_staff(one_part)();
     };

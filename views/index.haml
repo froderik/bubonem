@@ -12,8 +12,7 @@
     .all
       %header
         %span.current_time{ 'data-timeout': 1 }
-        %span.sun
-          = "up: #{sunrise.viewable_time_of_day} &middot; down: #{sunset.viewable_time_of_day}"
+        %span.sun{ 'data-timeout': 60 * 24 }
       .main
         .column
           %section.edsbergsskolan{ 'data-timeout': 1 }
