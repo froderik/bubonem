@@ -15,11 +15,12 @@ body {
     flex-direction: column;
 }
 
-section, header {
+section, header, iframe {
     margin: 10px;
     padding: 20px;
     background-color: darkred;
     border-radius: 20px;
+    border: black;
 }
 
 header {
@@ -48,4 +49,8 @@ td {
 
 #sun {
     float: right;
+}
+
+.traffic_map {
+    background-color: darkseagreen;
 }
