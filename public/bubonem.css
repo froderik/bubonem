@@ -17,9 +17,9 @@ body {
 
 section, header {
     margin: 10px;
-		padding: 20px;
-		background-color: darkred;
-		border-radius: 20px;
+    padding: 20px;
+    background-color: darkred;
+    border-radius: 20px;
 }
 
 header {
@@ -43,9 +43,9 @@ td {
 }
 
 .weather_forecast {
-		background-color: darkgreen;
+    background-color: darkgreen;
 }
 
-.sun {
-		float: right;
+#sun {
+    float: right;
 }
