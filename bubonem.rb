@@ -54,7 +54,10 @@ class Bubonem < Sinatra::Base
   include SunMachine
 
   get '/' do
-    haml :index
+    bus_stops = params['bus_stops']
+    bus_stops ||= '5518,5515'
+    bus_stops = bus_stops.split ','
+    haml :index, locals: { bus_stops: bus_stops }
   end
 
   get '/bus_stop/:stop_id' do |stop_id|
