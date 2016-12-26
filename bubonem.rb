@@ -57,12 +57,8 @@ class Bubonem < Sinatra::Base
     haml :index
   end
 
-  get '/edsbergsskolan' do
-    present_stop_information 5518
-  end
-
-  get '/axroad' do
-    present_stop_information 5515
+  get '/bus_stop/:stop_id' do |stop_id|
+    present_stop_information stop_id
   end
 
   get '/weather_forecast' do
