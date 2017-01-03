@@ -96,19 +96,24 @@ module WeatherForecast
     the_one = params.detect { |p| p['name'] == name }
     the_one['values'].first
   end
+end
 
+module ParamsHandling
+  def parse_bus_stops params
+    bus_stops = params['bus_stops']
+    bus_stops ||= '5518,5515'
+    bus_stops.split ','
+  end
 end
 
 class Bubonem < Sinatra::Base
   include SunMachine
   include BusInformation
   include WeatherForecast
+  include ParamsHandling
 
   get '/' do
-    bus_stops = params['bus_stops']
-    bus_stops ||= '5518,5515'
-    bus_stops = bus_stops.split ','
-    haml :index, locals: { bus_stops: bus_stops }
+    haml :index, locals: { bus_stops: parse_bus_stops( params ) }
   end
 
   get '/bus_stop/:stop_id' do |stop_id|
