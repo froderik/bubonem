@@ -50,45 +50,16 @@ class DateTime
   end
 end
 
-class Bubonem < Sinatra::Base
-  include SunMachine
-
-  get '/' do
-    bus_stops = params['bus_stops']
-    bus_stops ||= '5518,5515'
-    bus_stops = bus_stops.split ','
-    haml :index, locals: { bus_stops: bus_stops }
-  end
-
-  get '/bus_stop/:stop_id' do |stop_id|
-    present_stop_information stop_id
-  end
-
-  get '/weather_forecast' do
-    present_weather_forecast
-  end
-
-  get '/current_time' do
-    DateTime.now.in_stockholm.strftime '%Y-%m-%d %k:%M'
-  end
-
-  get '/sun' do
-    "up: #{sunrise.viewable_time_of_day} &middot; down: #{sunset.viewable_time_of_day}"
-  end
-
-
-  # bus information
-  
+module BusInformation
   def present_stop_information stop_id
     response = RestClient.get "http://sl.se/api/sv/RealTime/GetDepartures/#{stop_id}"
     the_data = JSON.parse(response)['data']['BusGroups'].first
     haml :stop_information, locals: { data: the_data }
   end
+end
 
-
-  # weather forecast
-
-  OneForecast = Struct.new :time, :celsius, :symbol do
+module WeatherForecast
+    OneForecast = Struct.new :time, :celsius, :symbol do
     def day_or_night
       time.day_or_night?
     end
@@ -125,7 +96,37 @@ class Bubonem < Sinatra::Base
     the_one = params.detect { |p| p['name'] == name }
     the_one['values'].first
   end
-  
+
+end
+
+class Bubonem < Sinatra::Base
+  include SunMachine
+  include BusInformation
+  include WeatherForecast
+
+  get '/' do
+    bus_stops = params['bus_stops']
+    bus_stops ||= '5518,5515'
+    bus_stops = bus_stops.split ','
+    haml :index, locals: { bus_stops: bus_stops }
+  end
+
+  get '/bus_stop/:stop_id' do |stop_id|
+    present_stop_information stop_id
+  end
+
+  get '/weather_forecast' do
+    present_weather_forecast
+  end
+
+  get '/current_time' do
+    DateTime.now.in_stockholm.strftime '%Y-%m-%d %k:%M'
+  end
+
+  get '/sun' do
+    "up: #{sunrise.viewable_time_of_day} &middot; down: #{sunset.viewable_time_of_day}"
+  end
+
 end
 
 
