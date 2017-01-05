@@ -99,8 +99,15 @@ module WeatherForecast
 end
 
 module ParamsHandling
-  def parse_bus_stops params
-    bus_stops = params['bus_stops']
+  def parse params
+    result = {}
+    result[:bus_stops] = parse_bus_stops params['bus_stops']
+
+    result
+  end
+  
+  def parse_bus_stops bus_stops_param
+    bus_stops = bus_stops_param
     bus_stops ||= '5518,5515'
     bus_stops.split ','
   end
@@ -113,7 +120,7 @@ class Bubonem < Sinatra::Base
   include ParamsHandling
 
   get '/' do
-    haml :index, locals: { bus_stops: parse_bus_stops( params ) }
+    haml :index, locals: parse( params )
   end
 
   get '/bus_stop/:stop_id' do |stop_id|
