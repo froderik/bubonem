@@ -103,6 +103,8 @@ module ParamsHandling
     result = {}
     result[:bus_stops] = parse_bus_stops params['bus_stops']
     result[:lat], result[:lon] = parse_coordinates params
+    result[:mapw] = params['mapw'] || 850
+    result[:maph] = params['maph'] || 850
 
     result
   end
