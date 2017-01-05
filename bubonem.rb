@@ -65,13 +65,13 @@ module WeatherForecast
     end
   end
 
-  def weather_url
-    "http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/#{LON}/lat/#{LAT}/data.json"
+  def weather_url lat, lon
+    "http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/#{lon}/lat/#{lat}/data.json"
   end
 
-  def present_weather_forecast
+  def present_weather_forecast lat, lon
     # documentation here: http://opendata.smhi.se/apidocs/metfcst/index.html
-    response = RestClient.get weather_url
+    response = RestClient.get weather_url(lat, lon)
     the_data = JSON.parse response
     list_of_forecasts = parse_raw_into_forecasts the_data
     haml :forecast, locals: { data: list_of_forecasts }
@@ -102,6 +102,7 @@ module ParamsHandling
   def parse params
     result = {}
     result[:bus_stops] = parse_bus_stops params['bus_stops']
+    result[:lat], result[:lon] = parse_coordinates params
 
     result
   end
@@ -110,6 +111,14 @@ module ParamsHandling
     bus_stops = bus_stops_param
     bus_stops ||= '5518,5515'
     bus_stops.split ','
+  end
+
+  def parse_coordinates params
+    lat = params[:lat]
+    lon = params[:lon]
+    coordinates_present = lat and lon
+
+    coordinates_present ? [lat, lon] : [LAT, LON]
   end
 end
 
@@ -128,7 +137,7 @@ class Bubonem < Sinatra::Base
   end
 
   get '/weather_forecast' do
-    present_weather_forecast
+    present_weather_forecast params['lat'], params['lon']
   end
 
   get '/current_time' do
