@@ -56,6 +56,10 @@ module BusInformation
     the_data = JSON.parse(response)['data']['BusGroups'].first
     haml :stop_information, locals: { data: the_data }
   end
+
+  def stations_by_name query
+    RestClient.get "http://sl.se/api/TypeAhead/Find/#{query}/true"
+  end
 end
 
 module WeatherForecast
@@ -148,6 +152,10 @@ class Bubonem < Sinatra::Base
 
   get '/sun' do
     "up: #{sunrise.viewable_time_of_day} &middot; down: #{sunset.viewable_time_of_day}"
+  end
+
+  get '/stations/:query' do |query|
+    stations_by_name query
   end
 
 end
