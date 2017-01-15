@@ -130,7 +130,7 @@ class Bubonem < Sinatra::Base
   include WeatherForecast
   include ParamsHandling
 
-  get '/' do
+  get '/dash' do
     haml :index, locals: parse( params )
   end
 
