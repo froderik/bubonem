@@ -135,7 +135,7 @@ class Bubonem < Sinatra::Base
   include ParamsHandling
 
   get '/dash' do
-    haml :index, locals: parse( params )
+    haml :dash, locals: parse( params )
   end
 
   get '/bus_stop/:stop_id' do |stop_id|
