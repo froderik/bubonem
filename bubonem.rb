@@ -134,8 +134,14 @@ class Bubonem < Sinatra::Base
   include WeatherForecast
   include ParamsHandling
 
+  set :haml, layout: false
+
+  get '/' do
+    haml :index, layout: :layout
+  end
+
   get '/dash' do
-    haml :dash, locals: parse( params )
+    haml :dash, locals: parse( params ), layout: :layout
   end
 
   get '/bus_stop/:stop_id' do |stop_id|

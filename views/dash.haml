@@ -1,23 +1,14 @@
-!!!
-%html
-  %head
-    %title
-      bubonem
-    %link{ href: 'bubonem.css', rel: 'stylesheet' }
-    %link{ rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css?family=Fira Mono' }
+.all
+  %header
+    %span.widget{ 'data-timeout': 1, 'data-url': '/current_time' }
+    %span.widget#sun{ 'data-timeout': 60 * 24, 'data-url': '/sun' }
+  .main
+    .column
+      - bus_stops.each do |one_stop|
+        %section.widget{ 'data-timeout': 1, 'data-url': "/bus_stop/#{one_stop}" }
+    .column
+      %section.widget#weather_forecast{ 'data-timeout': 60, 'data-url': "/weather_forecast?lat=#{lat}&lon=#{lon}" }
+    .column
+      %iframe#traffic_map{ src: 'https://trafiken.nu/stockholm/#fullscreen', width: mapw, height: maph }
 
-    %script{ src: 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js' }
-    %script{ src: 'bubonem.js' }
-  %body
-    .all
-      %header
-        %span.widget{ 'data-timeout': 1, 'data-url': '/current_time' }
-        %span.widget#sun{ 'data-timeout': 60 * 24, 'data-url': '/sun' }
-      .main
-        .column
-          - bus_stops.each do |one_stop|
-            %section.widget{ 'data-timeout': 1, 'data-url': "/bus_stop/#{one_stop}" }
-        .column
-          %section.widget#weather_forecast{ 'data-timeout': 60, 'data-url': "/weather_forecast?lat=#{lat}&lon=#{lon}" }
-        .column
-          %iframe#traffic_map{ src: 'https://trafiken.nu/stockholm/#fullscreen', width: mapw, height: maph }
+
