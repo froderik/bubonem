@@ -63,7 +63,7 @@ module BusInformation
                when 'train'
                  JSON.parse(response)['data']['TrainGroups'].first
                when 'tram'
-                 JSON.parse(response)['data']['TranCityTypes']['TramGroups'].first # TODO : merge lists - there are several.... (maybe do for all...)
+                 JSON.parse(response)['data']['TranCityTypes'].first['TramGroups'].first # TODO : merge lists - there are several.... (maybe do for all...)
                else
                  JSON.parse(response)['data']['BusGroups'].first
                end
