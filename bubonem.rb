@@ -57,17 +57,22 @@ module BusInformation
     response = RestClient.get "http://sl.se/api/sv/RealTime/GetDepartures/#{stop_id}"
 
     # train = TrainGroups, tub = MetroGroups, tram = TranCityTypes.TramGroups
-    the_data = case stop_type
-               when 'tub'
-                 JSON.parse(response)['data']['MetroGroups'].first
-               when 'train'
-                 JSON.parse(response)['data']['TrainGroups'].first
-               when 'tram'
-                 JSON.parse(response)['data']['TranCityTypes'].first['TramGroups'].first # TODO : merge lists - there are several.... (maybe do for all...)
-               else
-                 JSON.parse(response)['data']['BusGroups'].first
-               end
-    haml :stop_information, locals: { data: the_data }
+    data_lists = case stop_type
+                 when 'tub'
+                   JSON.parse(response)['data']['MetroGroups']
+                 when 'train'
+                   JSON.parse(response)['data']['TrainGroups']
+                 when 'tram'
+                   JSON.parse(response)['data']['TranCityTypes'].first['TramGroups'] # TODO : merge lists - there are several.... (maybe do for all...)
+                 else
+                   JSON.parse(response)['data']['BusGroups']
+                 end
+
+    departures = data_lists.map { |l| l['Departures'] } .flatten.sort_by { |d| d['ExpectedDataTime'] }
+    stop_name = data_lists.first['Title']
+    stop_name = departures.first['StopAreaName'] if stop_name == "mot:" 
+    
+    haml :stop_information, locals: { departures: departures, stop_name: stop_name }
   end
 
   def stations_by_name query
