@@ -51,9 +51,22 @@ class DateTime
 end
 
 module BusInformation
-  def present_stop_information stop_id
+  def present_stop_information stop_description
+    stop_id, stop_type = stop_description.split ':'
+    stop_type ||= 'bus'
     response = RestClient.get "http://sl.se/api/sv/RealTime/GetDepartures/#{stop_id}"
-    the_data = JSON.parse(response)['data']['BusGroups'].first
+
+    # train = TrainGroups, tub = MetroGroups, tram = TranCityTypes.TramGroups
+    the_data = case stop_type
+               when 'tub'
+                 JSON.parse(response)['data']['MetroGroups'].first
+               when 'train'
+                 JSON.parse(response)['data']['TrainGroups'].first
+               when 'tram'
+                 JSON.parse(response)['data']['TranCityTypes']['TramGroups'].first # TODO : merge lists - there are several.... (maybe do for all...)
+               else
+                 JSON.parse(response)['data']['BusGroups'].first
+               end
     haml :stop_information, locals: { data: the_data }
   end
 
@@ -105,7 +118,7 @@ end
 module ParamsHandling
   def parse params
     result = {}
-    result[:bus_stops] = parse_bus_stops params['bus_stops']
+    result[:stops] = parse_stops params['stops']
     result[:lat], result[:lon] = parse_coordinates params
     result[:mapw] = params['mapw'] || 850
     result[:maph] = params['maph'] || 850
@@ -113,10 +126,10 @@ module ParamsHandling
     result
   end
   
-  def parse_bus_stops bus_stops_param
-    bus_stops = bus_stops_param
-    bus_stops ||= '5518,5515'
-    bus_stops.split ','
+  def parse_stops stops_param
+    stops = stops_param
+    stops ||= '5518,5515'
+    stops.split ','
   end
 
   def parse_coordinates params
@@ -144,7 +157,7 @@ class Bubonem < Sinatra::Base
     haml :dash, locals: parse( params ), layout: :layout
   end
 
-  get '/bus_stop/:stop_id' do |stop_id|
+  get '/stop/:stop_id' do |stop_id|
     present_stop_information stop_id
   end
 
