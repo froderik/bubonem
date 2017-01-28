@@ -54,3 +54,8 @@ td {
 #traffic_map {
     background-color: darkseagreen;
 }
+
+.front {
+    width: 720px;
+    margin: 50px;
+}
