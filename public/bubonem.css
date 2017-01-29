@@ -70,3 +70,9 @@ td {
     padding:20px;
     width: 400px;
 }
+
+.stop-picker .close {
+    position: relative;
+    float: right;
+    cursor: pointer;
+}
