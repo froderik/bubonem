@@ -59,3 +59,14 @@ td {
     width: 720px;
     margin: 50px;
 }
+
+.stop-picker {
+    display: none;
+    background-color: darkgreen;
+    border-radius: 20px;
+    position: relative;
+    top: -20px;
+    left: 50px;
+    padding:20px;
+    width: 400px;
+}

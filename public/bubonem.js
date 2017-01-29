@@ -16,7 +16,7 @@ var content_magic = function(widget) {
 };
 
 $(function() {
-    // the function needs to be inside a funcition in order to get hold of this
+    // the function needs to be inside a function in order to get hold of this
     $(".widget").each(function(index) { wave_the_staff(this)() });
 });
 

@@ -3,7 +3,10 @@
 
   %p.about
 
-    budonem är en dashboard för folk som bor i Stockholmsområdet. Den visar:
+    %h2
+      Om
+
+    bubonem är en dashboard för folk som bor i Stockholmsområdet. Den visar:
 
     %ul
       %li
@@ -18,3 +21,21 @@
     Dashboarden går att konfigurera efter de behov man har.
     %a{ href: '/dash' }= "Ursprungsutförandet"
     funkar fint om man bor i Landsnora, Sollentuna men annars kan man skapa sin egen dashboardlänk här nedan.
+
+
+  %p.make-your-own
+
+    %h2
+      Gör din egen
+
+    .your-link
+      Här är din länk:
+      %a{ href: "/dash" }= "/dash"
+
+    %button.add-stop
+      Lägg till hållplats
+
+    .stop-picker
+      %h3
+        Välj hållplats
+      %input{ type: "text", placeholder: "Hållplatsnamn" }
