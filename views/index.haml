@@ -28,19 +28,33 @@
     %h2
       Gör din egen
 
-    .your-link
-      Här är din länk:
-      %a{ href: "/dash" }= "/dash"
-
-    %button.add-stop
-      Lägg till hållplats
+    .stop-additive
+      %h3
+        1. Lägg till hållplatser
+      %button.add-stop
+        Lägg till hållplats
 
     .stop-picker
       %i{ class: 'fa fa-times close', "aria-hidden": 'true' }
       %h3
         Välj hållplats
-      %input{ type: "text", placeholder: "Hållplatsnamn" }
+      %input{ type: "text", placeholder: "Hållplatsnamn", class: "stop-search" }
 
+
+    .map-size-selctor
+      %h3
+        2. Ange trafikkartans storlek
+
+    .weather-position-selector
+      %h3
+        3. Ändra koordinater för vädret
+
+    .your-link
+      %h3
+        4. Prova att det blev bra
+      %a{ href: "/dash" }= "/dash"
+
+    
       
   %p.browser-support
     %h2
