@@ -7,6 +7,10 @@ body {
     font-size: 20px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .all, .main {
     display: flex;
 }
