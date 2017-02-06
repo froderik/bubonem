@@ -75,6 +75,7 @@ td {
     left: 50px;
     padding:20px;
     width: 80%;
+    max-width: 666px;
 }
 
 .stop-picker .close {
