@@ -9,6 +9,8 @@ body {
 
 a {
     text-decoration: none;
+    color: lightyellow;
+    cursor: pointer;
 }
 
 .all, .main {
@@ -72,7 +74,7 @@ td {
     top: 200px;
     left: 50px;
     padding:20px;
-    width: 400px;
+    width: 80%;
 }
 
 .stop-picker .close {
@@ -80,3 +82,8 @@ td {
     float: right;
     cursor: pointer;
 }
+
+.one-station-to-select {
+    list-style: none;
+}
+
