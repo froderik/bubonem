@@ -64,8 +64,8 @@ td {
     display: none;
     background-color: darkgreen;
     border-radius: 20px;
-    position: relative;
-    top: -20px;
+    position: fixed;
+    top: 200px;
     left: 50px;
     padding:20px;
     width: 400px;
