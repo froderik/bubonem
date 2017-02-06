@@ -83,7 +83,7 @@ td {
     cursor: pointer;
 }
 
-.one-station-to-select {
+#stop-list li {
     list-style: none;
 }
 
