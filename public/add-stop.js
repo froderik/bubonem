@@ -2,8 +2,11 @@
 
 var search_for_stop = function() {
     var q = $(".stop-search").val();
-
-    console.log("yo " + q);
+    if(q.length >= 3) {
+        $.get( "stations/" + q, function(data) {
+            $( "#stop-list" ).html( data );
+        });
+    }
 };
 
 

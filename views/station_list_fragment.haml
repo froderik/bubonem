@@ -1,5 +1,5 @@
 %ul
   - station_list.each do |one_station|
-    %li
+    %li{ "data-type": one_station["Type"], "data-stop-id": one_station["SiteId"] }
       = one_station["Name"]
   
