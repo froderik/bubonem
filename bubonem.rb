@@ -179,7 +179,9 @@ class Bubonem < Sinatra::Base
   end
 
   get '/stations/:query' do |query|
-    stations_by_name query
+    query_response = JSON.parse stations_by_name query
+    station_list = query_response["data"]
+    haml :station_list_fragment, locals: {station_list: station_list}
   end
 
 end
