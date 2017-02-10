@@ -3,10 +3,11 @@ var select_stop = function( event ) {
     var stop_name = $(this).text();
     var stop_id = $(this).attr( "data-stop-id" );
 
-    var stop_markup = "<li data-stop-id=\"" + stop_id + "\">" + stop_name + "</li>";
+    var stop_markup = "<li class=\"selected-stop\"  data-stop-id=\"" + stop_id + "\">" + stop_name + "</li>";
     
     $("#selected-stops-list").append(stop_markup);
     hide_stop_picker();
+    calculate_link();
 };
 
 var show_search_result = function( data ) {
