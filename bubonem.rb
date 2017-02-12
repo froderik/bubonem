@@ -54,9 +54,14 @@ module BusInformation
   def present_stop_information stop_description
     stop_id, stop_type = stop_description.split ':'
     stop_type ||= 'bus'
+
+    # this endpoint was found by inspecting SLs travel planner
     response = RestClient.get "http://sl.se/api/sv/RealTime/GetDepartures/#{stop_id}"
 
-    # train = TrainGroups, tub = MetroGroups, tram = TranCityTypes.TramGroups
+    # train = TrainGroups
+    # tub = MetroGroups
+    # tram = TranCityTypes.TramGroups
+    # rest || bus = BudGroups
     data_lists = case stop_type
                  when 'tub'
                    JSON.parse(response)['data']['MetroGroups']
@@ -70,16 +75,21 @@ module BusInformation
 
     departures = data_lists.map { |l| l['Departures'] } .flatten.sort_by { |d| d['ExpectedDataTime'] }
     stop_name = data_lists.first['Title']
-    stop_name = departures.first['StopAreaName'] if stop_name == "mot:" 
+    stop_name = departures.first['StopAreaName'] if stop_name == "mot:" # cause trams are handled diferently
     
     haml :stop_information, locals: { departures: departures, stop_name: stop_name }
   end
 
   def stations_by_name query
+    # this endpoint was found by inspecting the station search at SLs home page
     RestClient.get "http://sl.se/api/TypeAhead/Find/#{query}/true"
   end
 end
 
+# the weather forecast is retreieved from SMHI.
+# documentation is here: http://opendata.smhi.se/apidocs/metfcst/index.html
+#
+# the forecast is updated once an hour
 module WeatherForecast
     OneForecast = Struct.new :time, :celsius, :symbol do
     def day_or_night
@@ -92,7 +102,6 @@ module WeatherForecast
   end
 
   def present_weather_forecast lat, lon
-    # documentation here: http://opendata.smhi.se/apidocs/metfcst/index.html
     response = RestClient.get weather_url(lat, lon)
     the_data = JSON.parse response
     list_of_forecasts = parse_raw_into_forecasts the_data
@@ -152,8 +161,15 @@ class Bubonem < Sinatra::Base
   include WeatherForecast
   include ParamsHandling
 
+  # turns off the default layout - now needs to be set
+  # explicitly by the routes that are using it
   set :haml, layout: false
 
+
+  ###################################
+  # PAGES ##########################
+  ###################################
+  
   get '/' do
     haml :index, layout: :layout
   end
@@ -161,6 +177,11 @@ class Bubonem < Sinatra::Base
   get '/dash' do
     haml :dash, locals: parse( params ), layout: :layout
   end
+
+
+  ###################################
+  # DASHBOARD FRAGMENTS #############
+  ###################################
 
   get '/stop/:stop_id' do |stop_id|
     present_stop_information stop_id
@@ -178,6 +199,12 @@ class Bubonem < Sinatra::Base
     "up: #{sunrise.viewable_time_of_day} &middot; down: #{sunset.viewable_time_of_day}"
   end
 
+
+  ###################################
+  # CONFIG HELPERS  #################
+  ###################################
+
+  
   get '/stations/:query' do |query|
     query_response = JSON.parse stations_by_name query
     station_list = query_response["data"]
