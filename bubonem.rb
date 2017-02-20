@@ -74,10 +74,15 @@ module BusInformation
                  end
 
     departures = data_lists.map { |l| l['Departures'] } .flatten.sort_by { |d| d['ExpectedDataTime'] }
-    stop_name = data_lists.first['Title']
-    stop_name = departures.first['StopAreaName'] if stop_name == "mot:" # cause trams are handled diferently
-    
-    haml :stop_information, locals: { departures: departures, stop_name: stop_name }
+
+
+    if data_lists.empty?
+      "No information returned for bus stop #{stop_id}"
+    else
+      stop_name = data_lists.first['Title']
+      stop_name = departures.first['StopAreaName'] if stop_name == "mot:" # cause trams are handled diferently
+      haml :stop_information, locals: { departures: departures, stop_name: stop_name }
+    end
   end
 
   def stations_by_name query
