@@ -14,6 +14,16 @@ var grab_stop_information = function() {
     }
 };
 
+var grab_map_information = function(name) {
+    var value = $("#" + name).val();
+
+    if( value === "" ) {
+        return "";
+    }
+    return name + "=" + value;
+};
+
+
 var push_unless_empty = function(ary, part) {
     if( part != "" ) {
         ary.push(part);
@@ -25,7 +35,9 @@ var calculate_link = function() {
 
     var params_parts = [];
 
-    push_unless_empty( grab_stop_information() );
+    push_unless_empty( params_parts, grab_stop_information() );
+    push_unless_empty( params_parts, grab_map_information("mapw") );
+    push_unless_empty( params_parts, grab_map_information("maph") );
 
     var all_params = params_parts.join("&");
 
@@ -34,3 +46,7 @@ var calculate_link = function() {
     $(".my-link").text( url );
     $(".my-link").attr( "href", url );
 };
+
+$(function() {
+    $(".link-source").change(calculate_link);
+});

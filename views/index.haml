@@ -44,9 +44,20 @@
       #stop-list
 
 
-    .map-size-selctor
+    .map-size-selector
       %h3
-        2. Ange trafikkartans storlek
+        2. Ange trafikkartans storlek i pixlar
+
+      .widthcombo
+        %label{ for: "mapw" }
+          Bredd
+        %br
+        %input{ type: "number", name: "mapw", placeholder: "Kartans bredd", id: "mapw", class: "link-source" }
+      .heightcombo
+        %label{ for: "maph" }
+          Höjd
+        %br
+        %input{ type: "number", name: "maph", placeholder: "Kartans höjd", id: "maph", class: "link-source" }
 
     .weather-position-selector
       %h3
