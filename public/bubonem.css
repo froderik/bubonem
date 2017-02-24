@@ -49,6 +49,10 @@ td {
     width: 40px;
 }
 
+#commuting {
+    background-color: darkred;
+}
+
 #weather_forecast {
     background-color: darkgreen;
 }
@@ -96,4 +100,8 @@ td {
 
 .map-size-selector div {
     margin-bottom: 20px;
+}
+
+.your-link {
+    background-color: darkslategray;
 }

@@ -28,7 +28,7 @@
     %h2
       Gör din egen
 
-    .stop-additive
+    %section.stop-additive#commuting
       %h3
         1. Lägg till hållplatser
       %button.add-stop
@@ -36,7 +36,7 @@
 
       #selected-stops-list
 
-    .stop-picker
+    %section.stop-picker
       %i{ class: 'fa fa-times close', "aria-hidden": 'true' }
       %h3
         Välj hållplats
@@ -44,7 +44,7 @@
       #stop-list
 
 
-    .map-size-selector
+    %section.map-size-selector#traffic_map
       %h3
         2. Ange trafikkartans storlek i pixlar
 
@@ -59,11 +59,11 @@
         %br
         %input{ type: "number", name: "maph", placeholder: "Kartans höjd", id: "maph", class: "link-source" }
 
-    .weather-position-selector
+    %section.weather-position-selector#weather_forecast
       %h3
         3. Ändra koordinater för vädret
 
-    .your-link
+    %section.your-link
       %h3
         4. Prova att det blev bra
       %a{ class: "my-link", href: "/dash" }= "/dash"
