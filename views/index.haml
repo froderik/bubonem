@@ -63,6 +63,22 @@
       %h3
         3. Ändra koordinater för vädret
 
+      %p
+        Vädret är inställd på koordinaterna N 59.44 E 17.96 vilket är i nordöstra Sollentuna.
+        Antagligtvis duger den väderprognosen ganska bra för hela Stockholm. Men vill du ha något annat
+        så kan du fylla i det här.
+
+      .latcombo
+        %label{ for: "lat" }
+          Latitud
+        %br
+        %input{ type: "number", name: "lat", placeholder: "Lat", id: "lat", class: "link-source", step: 0.01 }
+      .loncombo
+        %label{ for: "lon" }
+          Longitud
+        %br
+        %input{ type: "number", name: "lon", placeholder: "Lon", id: "lon", class: "link-source", step: 0.01 }
+
     %section.your-link
       %h3
         4. Prova att det blev bra

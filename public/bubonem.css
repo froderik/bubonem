@@ -92,13 +92,13 @@ td {
     list-style: none;
 }
 
-.map-size-selector input {
+input, button {
     height: 30px;
     border-radius: 10px;
     padding: 5px;
 }
 
-.map-size-selector div {
+.map-size-selector {
     margin-bottom: 20px;
 }
 
