@@ -72,14 +72,15 @@ td {
 
 .stop-picker {
     display: none;
-    background-color: darkgreen;
+    background-color: black;
     border-radius: 20px;
     position: fixed;
     top: 200px;
-    left: 50px;
+    left: 66px;
     padding:20px;
     width: 80%;
     max-width: 666px;
+    border: 1px solid;
 }
 
 .stop-picker .close {
@@ -93,9 +94,12 @@ td {
 }
 
 input, button {
-    height: 30px;
-    border-radius: 10px;
-    padding: 5px;
+    height: 42px;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Fira Mono', 'Courier New', monospaced;
+    font-weight: bold;
+    
 }
 
 .map-size-selector {
