@@ -113,3 +113,9 @@ input, button {
 h1 {
     text-align: right;
 }
+
+#selected-stops-list {
+    margin-top: 20px;
+    margin-left: 20px;
+    list-style: none;
+}
