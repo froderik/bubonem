@@ -109,3 +109,7 @@ input, button {
 .your-link {
     background-color: darkslategray;
 }
+
+h1 {
+    text-align: right;
+}
