@@ -3,7 +3,15 @@ var select_stop = function( event ) {
     var stop_name = $(this).text();
     var stop_id = $(this).attr( "data-stop-id" );
 
-    var stop_markup = "<li class=\"selected-stop\"  data-stop-id=\"" + stop_id + "\">" + stop_name + "</li>";
+    var stop_markup = "<li class=\"selected-stop\"  data-stop-id=\"" + stop_id + "\">"
+        + '<span>' + stop_name + '</span>'
+        + '<select>'
+        + '<option value="bus" selected>Buss</option>'
+        + '<option value="tub">T-bana</option>'
+        + '<option value="tram">Spårvagn</option>'
+        + '<option value="train">Pendeltåg</option>'
+        + '</select>'
+        + "</li>";
     
     $("#selected-stops-list").append(stop_markup);
     hide_stop_picker();

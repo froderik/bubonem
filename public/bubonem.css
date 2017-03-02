@@ -93,7 +93,7 @@ td {
     list-style: none;
 }
 
-input, button {
+input, button, select  {
     height: 42px;
     border-radius: 5px;
     padding: 10px;
@@ -118,4 +118,8 @@ h1 {
     margin-top: 20px;
     margin-left: 20px;
     list-style: none;
+}
+
+#selected-stops-list li {
+    margin: 10px;
 }
