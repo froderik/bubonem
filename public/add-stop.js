@@ -4,8 +4,8 @@ var select_stop = function( event ) {
     var stop_id = $(this).attr( "data-stop-id" );
 
     var stop_markup = "<li class=\"selected-stop\"  data-stop-id=\"" + stop_id + "\">"
-        + '<span>' + stop_name + '</span>'
-        + '<select>'
+        + '<span class=\"stop-name\">' + stop_name + '</span>'
+        + '<select class=\"stop-type-select\">'
         + '<option value="bus" selected>Buss</option>'
         + '<option value="tub">T-bana</option>'
         + '<option value="tram">Spårvagn</option>'

@@ -123,3 +123,12 @@ h1 {
 #selected-stops-list li {
     margin: 10px;
 }
+
+.stop-name {
+    display: inline-block;
+    width: 70%;
+}
+
+.stop-type-select {
+    width: 30%;
+}
