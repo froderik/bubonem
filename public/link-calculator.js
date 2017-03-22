@@ -51,6 +51,6 @@ var calculate_link = function() {
 };
 
 $(function() {
-    $(".link-source").keypress(calculate_link);
+    $(".link-source").keyup(calculate_link);
     $(".link-source").change(calculate_link);
 });
