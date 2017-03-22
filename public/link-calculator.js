@@ -3,7 +3,8 @@ var grab_stop_information = function() {
     var stops_ary = []
     $(".selected-stop").each(function() {
         var stop_id = $(this).attr( "data-stop-id" );
-        var this_part = stop_id + ":bus";
+        var stop_type = $(this).find(".stop-type-select").val();
+        var this_part = stop_id + ":" + stop_type;
         stops_ary.push(this_part);
     });
 
