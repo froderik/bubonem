@@ -16,6 +16,7 @@ var select_stop = function( event ) {
     $("#selected-stops-list").append(stop_markup);
     hide_stop_picker();
     calculate_link();
+    $(".stop-type-select").change(calculate_link);
 };
 
 var show_search_result = function( data ) {
