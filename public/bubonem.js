@@ -16,7 +16,7 @@ var content_magic = function(widget) {
     $.get(url, function(response) {
         // TODO - error handling when the server is not responding
         $(widget).html(response);
-    });
+    }).fail( $(widget).html("Anropet misslyckades")  );
 };
 
 $(function() {
