@@ -77,7 +77,7 @@ module BusInformation
 
 
     if data_lists.empty?
-      "No information returned for bus stop #{stop_id}"
+      "Ingen information finns för hållplats #{stop_id}"
     else
       stop_name = data_lists.first['Title']
       stop_name = departures.first['StopAreaName'] if stop_name == "mot:" # cause trams are handled diferently
