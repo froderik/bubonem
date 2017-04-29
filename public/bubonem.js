@@ -13,10 +13,9 @@ var wave_the_staff = function(widget) {
 
 var content_magic = function(widget) {
     var url = $(widget).attr('data-url');
-    $.get(url, function(response) {
-        // TODO - error handling when the server is not responding
-        $(widget).html(response);
-    }).fail( $(widget).html("Anropet misslyckades")  );
+    $.get(url)
+	.done( function(response) { $(widget).html(response) })
+	.fail( function() { $(widget).html("Anropet misslyckades") } );
 };
 
 $(function() {
