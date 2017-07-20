@@ -87,7 +87,8 @@ module BusInformation
 
   def stations_by_name query
     # this endpoint was found by inspecting the station search at SLs home page
-    RestClient.get "http://sl.se/api/TypeAhead/Find/#{query}/true"
+    escaped_query = CGI.escape query  
+    RestClient.get "http://sl.se/api/TypeAhead/Find/#{escaped_query}/true"
   end
 end
 
