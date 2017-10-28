@@ -42,8 +42,15 @@ var hide_stop_picker = function() {
     $(".stop-picker").hide();
 };
 
+var close_if_escaping = function(e) {
+    if( e.keyCode == 27 ) {
+	hide_stop_picker();
+    }
+};
+
 $(function() {
     $(".add-stop").click(show_stop_picker);
     $(".stop-picker .close").click(hide_stop_picker);
     $(".stop-search").on("input", search_for_stop);
+    $(document).keyup(close_if_escaping)
 });
