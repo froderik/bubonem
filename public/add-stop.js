@@ -15,6 +15,7 @@ var select_stop = function( event ) {
     
     $("#selected-stops-list").append(stop_markup);
     hide_stop_picker();
+    clear_search_field();
     calculate_link();
     $(".stop-type-select").change(calculate_link);
 };
@@ -33,13 +34,16 @@ var search_for_stop = function() {
     }
 };
 
-
 var show_stop_picker = function() {
     $(".stop-picker").show();
 };
 
 var hide_stop_picker = function() {
     $(".stop-picker").hide();
+};
+
+var clear_search_field = function() {
+    $(".stop-search").val("");
 };
 
 var close_if_escaping = function(e) {
