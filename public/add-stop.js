@@ -36,6 +36,7 @@ var search_for_stop = function() {
 
 var show_stop_picker = function() {
     $(".stop-picker").show();
+    $(".stop-search").focus();
 };
 
 var hide_stop_picker = function() {
