@@ -48,7 +48,8 @@ var clear_search_field = function() {
 };
 
 var close_if_escaping = function(e) {
-    if( e.keyCode == 27 ) {
+    var escapeKeyCode = 27;
+    if( e.keyCode == escapeKeyCode ) {
 	hide_stop_picker();
     }
 };
