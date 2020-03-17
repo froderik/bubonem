@@ -13,7 +13,7 @@ gem 'rest-client'
 gem 'tzinfo'
 
 # library for solar times
-gem 'RubySunrise'
+gem 'RubySunrise', git: 'https://github.com/mikereedell/sunrisesunset-ruby'
 
 # we run unicorn in production
 gem 'unicorn'

@@ -99,7 +99,7 @@ end
 module WeatherForecast
     OneForecast = Struct.new :time, :celsius, :symbol do
     def day_or_night
-      :day #time.day_or_night?
+      time.day_or_night?
     end
   end
 
@@ -202,7 +202,7 @@ class Bubonem < Sinatra::Base
   end
 
   get '/sun' do
-    'yolo' #"up: #{sunrise.viewable_time_of_day} &middot; down: #{sunset.viewable_time_of_day}"
+    "up: #{sunrise.viewable_time_of_day} &middot; down: #{sunset.viewable_time_of_day}"
   end
 
 
