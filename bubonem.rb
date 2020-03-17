@@ -18,7 +18,7 @@ module SunMachine
   end
 
   def sun_machine date
-    SolarEventCalculator.new date, BigDecimal.new(LAT), BigDecimal.new(LON)
+    SolarEventCalculator.new date, BigDecimal(LAT), BigDecimal(LON)
   end
 end
 
@@ -99,12 +99,12 @@ end
 module WeatherForecast
     OneForecast = Struct.new :time, :celsius, :symbol do
     def day_or_night
-      time.day_or_night?
+      :day #time.day_or_night?
     end
   end
 
   def weather_url lat, lon
-    "http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/#{lon}/lat/#{lat}/data.json"
+    "http://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/#{lon}/lat/#{lat}/data.json"
   end
 
   def present_weather_forecast lat, lon
@@ -121,7 +121,7 @@ module WeatherForecast
       forecast = OneForecast.new
       forecast.time = DateTime.parse( one_point_in_time['validTime'] )
       forecast.celsius = find_value 't', params
-      forecast.symbol = find_value 'Wsymb', params
+      forecast.symbol = find_value 'Wsymb2', params
       forecast
     end
 
@@ -202,7 +202,7 @@ class Bubonem < Sinatra::Base
   end
 
   get '/sun' do
-    "up: #{sunrise.viewable_time_of_day} &middot; down: #{sunset.viewable_time_of_day}"
+    'yolo' #"up: #{sunrise.viewable_time_of_day} &middot; down: #{sunset.viewable_time_of_day}"
   end
 
 
