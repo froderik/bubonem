@@ -140,8 +140,6 @@ module ParamsHandling
     result = {}
     result[:stops] = parse_stops params['stops']
     result[:lat], result[:lon] = parse_coordinates params
-    result[:mapw] = params['mapw'] || 850
-    result[:maph] = params['maph'] || 850
 
     result
   end

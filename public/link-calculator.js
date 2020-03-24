@@ -37,8 +37,6 @@ var calculate_link = function() {
     var params_parts = [];
 
     push_unless_empty( params_parts, grab_stop_information() );
-    push_unless_empty( params_parts, grab_map_information("mapw") );
-    push_unless_empty( params_parts, grab_map_information("maph") );
     push_unless_empty( params_parts, grab_map_information("lat") );
     push_unless_empty( params_parts, grab_map_information("lon") );
 

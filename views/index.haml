@@ -43,28 +43,12 @@
       %input{ type: "text", placeholder: "Hållplatsnamn", class: "stop-search" }
       #stop-list
 
-
-    %section.map-size-selector#traffic_map
-      %h3
-        2. Ange trafikkartans storlek i pixlar
-
-      .widthcombo
-        %label{ for: "mapw" }
-          Bredd
-        %br
-        %input{ type: "number", name: "mapw", placeholder: "Kartans bredd", id: "mapw", class: "link-source" }
-      .heightcombo
-        %label{ for: "maph" }
-          Höjd
-        %br
-        %input{ type: "number", name: "maph", placeholder: "Kartans höjd", id: "maph", class: "link-source" }
-
     %section.weather-position-selector#weather_forecast
       %h3
-        3. Ändra koordinater för vädret
+        2. Ändra koordinater för vädret
 
       %p
-        Vädret är inställd på koordinaterna N 59.44 E 17.96 vilket är i nordöstra Sollentuna.
+        Vädret är inställd på koordinaterna N 59.29 E 18.11 vilket är i sydöstra Stockholm.
         Antagligtvis duger den väderprognosen ganska bra för hela Stockholm. Men vill du ha något annat
         så kan du fylla i det här.
 
@@ -81,7 +65,7 @@
 
     %section.your-link
       %h3
-        4. Prova att det blev bra
+        3. Prova att det blev bra
       %a{ class: "my-link", href: "/dash" }= "/dash"
 
     
