@@ -4,8 +4,8 @@ require 'json'
 require 'solareventcalculator'
 
 
-LON = '17.96'
-LAT = '59.44'
+LON = '18.11'
+LAT = '59.29'
 ZONE = 'Europe/Stockholm'
 
 module SunMachine
