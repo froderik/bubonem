@@ -48,7 +48,16 @@ var calculate_link = function() {
     $(".my-link").attr( "href", url );
 };
 
+var add_event = function(css_selector, event_name) {
+    for(node of document.querySelectorAll(css_selector)) {
+        node.addEventListener(event_name, calculate_link);
+    }
+}
+
 $(function() {
-    $(".link-source").keyup(calculate_link);
-    $(".link-source").change(calculate_link);
+})
+
+window.addEventListener('DOMContentLoaded', (e) => {
+    add_event(".link-source", "keyup")
+    add_event(".link-source", "change")
 });
