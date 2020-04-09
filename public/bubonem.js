@@ -23,6 +23,12 @@ let content_magic = (widget) => {
     client.send()
 };
 
+let add_event = (css_selector, event_name, fn) => {
+    for(node of document.querySelectorAll(css_selector)) {
+        node.addEventListener(event_name, fn);
+    }
+}
+
 $(() => {
     // for every 'widget' - wave the staff to get content into it.
     // The function needs to be inside a function in order to get hold of this.

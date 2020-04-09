@@ -51,13 +51,7 @@ let calculate_link = () => {
     da_link.href = url
 };
 
-let add_event = (css_selector, event_name) => {
-    for(node of document.querySelectorAll(css_selector)) {
-        node.addEventListener(event_name, calculate_link);
-    }
-}
-
 window.addEventListener('DOMContentLoaded', (e) => {
-    add_event(".link-source", "keyup")
-    add_event(".link-source", "change")
+    add_event(".link-source", "keyup", calculate_link)
+    add_event(".link-source", "change", calculate_link)
 });
