@@ -1,9 +1,6 @@
 
-var select_stop = function( event ) {
-    var stop_name = $(this).text();
-    var stop_id = $(this).attr( "data-stop-id" );
-
-    var stop_markup = "<li class=\"selected-stop\"  data-stop-id=\"" + stop_id + "\">"
+let update_selected_stops_list = (stop_id, stop_name) => {
+    let stop_markup = "<li class=\"selected-stop\"  data-stop-id=\"" + stop_id + "\">"
         + '<span class=\"stop-name\">' + stop_name + '</span>'
         + '<select class=\"stop-type-select\">'
         + '<option value="bus" selected>Buss</option>'
@@ -12,51 +9,66 @@ var select_stop = function( event ) {
         + '<option value="train">Pendeltåg</option>'
         + '</select>'
         + "</li>";
-    
-    $("#selected-stops-list").append(stop_markup);
+
+    let selected_stops_list = document.querySelector('#selected-stops-list')
+    selected_stops_list.insertAdjacentHTML('beforeend', stop_markup)
+}
+
+let select_stop = (event) => {
+    let stop_name = event.srcElement.text
+    let stop_id = event.srcElement.attributes['data-stop-id'].value
+
+    update_selected_stops_list(stop_id, stop_name)
     hide_stop_picker();
     clear_search_field();
     calculate_link();
-    $(".stop-type-select").change(calculate_link);
-};
+    add_event('.stop-type-select', 'change', calculate_link)
+}
 
-var show_search_result = function( data ) {
-    $("#stop-list").html( data );
-    $(".one-stop-to-select").click( select_stop );
-};
+let show_search_result = (data) => {
+    document.querySelector('#stop-list').innerHTML = data
+    add_event('.one-stop-to-select', 'click', select_stop)
+}
 
-var search_for_stop = function() {
-    var q = $(".stop-search").val();
+let search_for_stop = () => {
+    let q = document.querySelector('.stop-search').value;
     if(q.length >= 3) {
-        $.get( "stations/" + q, show_search_result);
+        let client = new XMLHttpRequest()
+        client.open("GET", `stations/${q}`)
+        client.addEventListener('load', (e) => show_search_result(e.srcElement.responseText))
+        client.send()
     } else {
-        $( "#stop-list" ).html( "" );
+        document.querySelector('#stop-list').innerHTML = ''
     }
-};
+}
 
-var show_stop_picker = function() {
-    $(".stop-picker").show();
-    $(".stop-search").focus();
-};
+let show_stop_picker = () => {
+    let stop_picker = document.querySelector('.stop-picker')
+    show(stop_picker)
 
-var hide_stop_picker = function() {
-    $(".stop-picker").hide();
-};
+    document.querySelector('.stop-search').focus()
+}
 
-var clear_search_field = function() {
-    $(".stop-search").val("");
-};
+let hide_stop_picker = () => {
+    let stop_picker = document.querySelector('.stop-picker')
+    hide(stop_picker)
+}
 
-var close_if_escaping = function(e) {
-    var escapeKeyCode = 27;
+let clear_search_field = () => {
+    document.querySelector('.stop-search').value = ""
+}
+
+let close_if_escaping = (e) => {
+    let escapeKeyCode = 27
     if( e.keyCode == escapeKeyCode ) {
-	hide_stop_picker();
+        hide_stop_picker()
     }
-};
+}
 
-$(function() {
-    $(".add-stop").click(show_stop_picker);
-    $(".stop-picker .close").click(hide_stop_picker);
-    $(".stop-search").on("input", search_for_stop);
-    $(document).keyup(close_if_escaping)
-});
+
+window.addEventListener('DOMContentLoaded', (e) => {
+    add_event('.add-stop', 'click', show_stop_picker)
+    add_event('.stop-picker .close', 'click', hide_stop_picker)
+    add_event('.stop-search', 'input', search_for_stop)
+    document.addEventListener('keyup', close_if_escaping)
+})
