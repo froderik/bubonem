@@ -2,7 +2,7 @@
 let grab_stop_information = () => {
     let stops_ary = []
 
-    let stops_list = document.querySelectorAll(".selected-stop")
+    let stops_list = many(".selected-stop")
     for(stop of stops_list) {
         let stop_id = stop.attributes['data-stop-id'].value
         let stop_type = stop.querySelector(".stop-type-select").value
@@ -18,7 +18,7 @@ let grab_stop_information = () => {
 };
 
 let grab_location_information = (name) => {
-    let value = document.querySelector("#" + name).value
+    let value = one("#" + name).value
 
     if( value === "" ) {
         return "";
@@ -46,7 +46,7 @@ let calculate_link = () => {
 
     url += all_params;
 
-    da_link = document.querySelector(".my-link")
+    da_link = one(".my-link")
     da_link.innerHTML = url
     da_link.href = url
 };

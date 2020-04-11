@@ -1,7 +1,7 @@
 // NEW "FRAMEWORK"
 
 let add_event = (css_selector, event_name, fn) => {
-    for(node of document.querySelectorAll(css_selector)) {
+    for(node of many(css_selector)) {
         node.addEventListener(event_name, fn);
     }
 }
@@ -18,7 +18,9 @@ let im_ready = (fn) => {
     window.addEventListener('DOMContentLoaded', fn)
 }
 
+let one = (css_selector) => document.querySelector(css_selector)
 
+let many = (css_selector) => document.querySelectorAll(css_selector)
 
 
 // the main stuff to update the actual dashboard
@@ -51,7 +53,7 @@ let content_magic = (widget) => {
 im_ready( (e) => {
     // for every 'widget' - wave the staff to get content into it.
     // The function needs to be inside a function in order to get hold of this.
-    let widgets = document.querySelectorAll(".widget")
+    let widgets = many(".widget")
     for( w of widgets ) { wave_the_staff(w)() }
 })
 

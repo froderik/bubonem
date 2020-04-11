@@ -10,7 +10,7 @@ let update_selected_stops_list = (stop_id, stop_name) => {
         + '</select>'
         + "</li>";
 
-    let selected_stops_list = document.querySelector('#selected-stops-list')
+    let selected_stops_list = one('#selected-stops-list')
     selected_stops_list.insertAdjacentHTML('beforeend', stop_markup)
 }
 
@@ -26,36 +26,36 @@ let select_stop = (event) => {
 }
 
 let show_search_result = (data) => {
-    document.querySelector('#stop-list').innerHTML = data
+    one('#stop-list').innerHTML = data
     add_event('.one-stop-to-select', 'click', select_stop)
 }
 
 let search_for_stop = () => {
-    let q = document.querySelector('.stop-search').value;
+    let q = one('.stop-search').value;
     if(q.length >= 3) {
         let client = new XMLHttpRequest()
         client.open("GET", `stations/${q}`)
         client.addEventListener('load', (e) => show_search_result(e.srcElement.responseText))
         client.send()
     } else {
-        document.querySelector('#stop-list').innerHTML = ''
+        one('#stop-list').innerHTML = ''
     }
 }
 
 let show_stop_picker = () => {
-    let stop_picker = document.querySelector('.stop-picker')
+    let stop_picker = one('.stop-picker')
     show(stop_picker)
 
-    document.querySelector('.stop-search').focus()
+    one('.stop-search').focus()
 }
 
 let hide_stop_picker = () => {
-    let stop_picker = document.querySelector('.stop-picker')
+    let stop_picker = one('.stop-picker')
     hide(stop_picker)
 }
 
 let clear_search_field = () => {
-    document.querySelector('.stop-search').value = ""
+    one('.stop-search').value = ""
 }
 
 let close_if_escaping = (e) => {
