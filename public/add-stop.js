@@ -65,8 +65,7 @@ let close_if_escaping = (e) => {
     }
 }
 
-
-window.addEventListener('DOMContentLoaded', (e) => {
+im_ready( (e) => {
     add_event('.add-stop', 'click', show_stop_picker)
     add_event('.stop-picker .close', 'click', hide_stop_picker)
     add_event('.stop-search', 'input', search_for_stop)

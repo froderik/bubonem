@@ -51,7 +51,7 @@ let calculate_link = () => {
     da_link.href = url
 };
 
-window.addEventListener('DOMContentLoaded', (e) => {
+im_ready( (e) => {
     add_event(".link-source", "keyup", calculate_link)
     add_event(".link-source", "change", calculate_link)
 });

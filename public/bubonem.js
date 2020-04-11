@@ -14,6 +14,11 @@ let hide = (el) => {
     el.style.display = 'none'
 }
 
+let im_ready = (fn) => {
+    window.addEventListener('DOMContentLoaded', fn)
+}
+
+
 
 
 // the main stuff to update the actual dashboard
@@ -43,7 +48,7 @@ let content_magic = (widget) => {
 };
 
 
-window.addEventListener('DOMContentLoaded', (e) => {
+im_ready( (e) => {
     // for every 'widget' - wave the staff to get content into it.
     // The function needs to be inside a function in order to get hold of this.
     let widgets = document.querySelectorAll(".widget")
