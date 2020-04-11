@@ -30,7 +30,7 @@ class DateTime
   end
 
   def in_stockholm
-    sthlm_zone.utc_to_local self
+    sthlm_zone.to_local self
   end
 
   def sthlm_zone
