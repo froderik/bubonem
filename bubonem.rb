@@ -3,9 +3,8 @@ require 'sinatra'
 require 'json'
 require 'solareventcalculator'
 
-
-LON = '18.11'
 LAT = '59.29'
+LON = '18.11'
 ZONE = 'Europe/Stockholm'
 
 module SunMachine
@@ -46,7 +45,7 @@ class DateTime
   end
 
   def viewable_time_of_day
-    strftime '%k:%M'
+    in_stockholm.strftime '%k:%M'
   end
 end
 
