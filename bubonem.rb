@@ -174,7 +174,7 @@ class Bubonem < Sinatra::Base
   ###################################
   
   get '/' do
-    haml :index, layout: :layout
+    haml :index, locals: {scripts: ['add-stop', 'link-calculator']} ,layout: :layout
   end
 
   get '/dash' do

@@ -8,9 +8,9 @@
 
     %script{ src: 'bubonem.js' }
 
-    -# TODO : only load these for the front page
-    %script{ src: 'add-stop.js' }
-    %script{ src: 'link-calculator.js' }
+    - scripts ||= []
+    - scripts.each do |script|
+      %script{ src: "#{script}.js" }
       
     %script{ src: 'https://use.fontawesome.com/c8fc92bdfd.js' }
   %body
