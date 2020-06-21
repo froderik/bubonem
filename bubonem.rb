@@ -145,7 +145,7 @@ module ParamsHandling
   
   def parse_stops stops_param
     stops = stops_param
-    stops ||= '5518,5515'
+    stops ||= '9143:tub,1577'
     stops.split ','
   end
 
