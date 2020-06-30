@@ -57,23 +57,16 @@ module BusInformation
     # this endpoint was found by inspecting SLs travel planner
     response = RestClient.get "https://sl.se/api/sv/RealTime/GetDepartures/#{stop_id}"
 
-    # train = TrainGroups
-    # tub = MetroGroups
-    # tram = TranCityTypes.TramGroups
-    # rest || bus = BudGroups
-    data_lists = case stop_type
-                 when 'tub'
-                   JSON.parse(response)['data']['MetroGroups']
-                 when 'train'
-                   JSON.parse(response)['data']['TrainGroups']
-                 when 'tram'
-                   JSON.parse(response)['data']['TranCityTypes'].first['TramGroups'] # TODO : merge lists - there are several.... (maybe do for all...)
-                 else
-                   JSON.parse(response)['data']['BusGroups']
-                 end
+    stop_type_mappings = {
+      tub: ->   (d) { d['MetroGroups'] },
+      train: -> (d) { d['TrainGroups'] },
+      tram: ->  (d) { d['TranCityTypes'].first['TramGroups'] },
+      bus: ->   (d) { d['BusGroups'] },
+    }
 
-    departures = data_lists.map { |l| l['Departures'] } .flatten.sort_by { |d| d['ExpectedDataTime'] }
+    data_lists = stop_type_mappings[stop_type.to_sym].call JSON.parse(response)['data']
 
+    departures = data_lists.map { |l| l['Departures'] }.flatten.sort_by { |d| d['ExpectedDataTime'] }
 
     if data_lists.empty?
       "Ingen information finns för hållplats #{stop_id}"
