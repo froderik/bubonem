@@ -103,7 +103,7 @@ module WeatherForecast
   end
 
   def weather_url lat, lon
-    "http://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/#{lon}/lat/#{lat}/data.json"
+    "https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/#{lon}/lat/#{lat}/data.json"
   end
 
   def present_weather_forecast lat, lon
