@@ -55,7 +55,7 @@ module BusInformation
     stop_type ||= 'bus'
 
     # this endpoint was found by inspecting SLs travel planner
-    response = RestClient.get "http://sl.se/api/sv/RealTime/GetDepartures/#{stop_id}"
+    response = RestClient.get "https://sl.se/api/sv/RealTime/GetDepartures/#{stop_id}"
 
     # train = TrainGroups
     # tub = MetroGroups
@@ -87,7 +87,7 @@ module BusInformation
   def stations_by_name query
     # this endpoint was found by inspecting the station search at SLs home page
     escaped_query = CGI.escape query  
-    RestClient.get "http://sl.se/api/TypeAhead/Find/#{escaped_query}/true"
+    RestClient.get "https://sl.se/api/TypeAhead/Find/#{escaped_query}/true"
   end
 end
 
