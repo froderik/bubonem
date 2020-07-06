@@ -49,7 +49,7 @@ class DateTime
   end
 end
 
-module BusInformation
+module CommuteInformation
   def present_stop_information stop_description
     stop_id, stop_type = stop_description.split ':'
     stop_type ||= 'bus'
@@ -60,11 +60,13 @@ module BusInformation
     stop_type_mappings = {
       tub: ->   (d) { d['MetroGroups'] },
       train: -> (d) { d['TrainGroups'] },
-      tram: ->  (d) { d['TranCityTypes'].first['TramGroups'] },
+      tram: ->  (d) { d.dig('TranCityTypes', 0, 'TramGroups') || [] },
       bus: ->   (d) { d['BusGroups'] },
     }
 
-    data_lists = stop_type_mappings[stop_type.to_sym].call JSON.parse(response)['data']
+    stop_type_lambda = stop_type_mappings[stop_type.to_sym]
+    response_data = JSON.parse(response)['data']
+    data_lists = stop_type_lambda.call response_data
 
     departures = data_lists.map { |l| l['Departures'] }.flatten.sort_by { |d| d['ExpectedDataTime'] }
 
@@ -72,7 +74,7 @@ module BusInformation
       "Ingen information finns för hållplats #{stop_id}"
     else
       stop_name = data_lists.first['Title']
-      stop_name = departures.first['StopAreaName'] if stop_name == "mot:" # cause trams are handled diferently
+      stop_name = departures.first['StopAreaName'] if stop_name == "mot:" # cause trams are handled differently
       haml :stop_information, locals: { departures: departures, stop_name: stop_name }
     end
   end
@@ -153,7 +155,7 @@ end
 
 class Bubonem < Sinatra::Base
   include SunMachine
-  include BusInformation
+  include CommuteInformation
   include WeatherForecast
   include ParamsHandling
 
