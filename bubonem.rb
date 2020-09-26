@@ -82,7 +82,7 @@ module CommuteInformation
   def stations_by_name query
     # this endpoint was found by inspecting the station search at SLs home page
     escaped_query = CGI.escape query  
-    RestClient.get "https://sl.se/api/TypeAhead/Find/#{escaped_query}/true"
+    RestClient.get "https://webcloud.sl.se/api/travellocations?search=#{escaped_query}&type=1&mode=cors"
   end
 end
 
@@ -204,8 +204,7 @@ class Bubonem < Sinatra::Base
 
   
   get '/stations/:query' do |query|
-    query_response = JSON.parse stations_by_name query
-    station_list = query_response["data"]
+    station_list = JSON.parse stations_by_name query
     haml :station_list_fragment, locals: {station_list: station_list}
   end
 

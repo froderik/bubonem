@@ -2,12 +2,6 @@
 let update_selected_stops_list = (stop_id, stop_name) => {
     let stop_markup = "<li class=\"selected-stop\"  data-stop-id=\"" + stop_id + "\">"
         + '<span class=\"stop-name\">' + stop_name + '</span>'
-        + '<select class=\"stop-type-select\">'
-        + '<option value="bus" selected>Buss</option>'
-        + '<option value="tub">T-bana</option>'
-        + '<option value="tram">Spårvagn</option>'
-        + '<option value="train">Pendeltåg</option>'
-        + '</select>'
         + "</li>";
 
     let selected_stops_list = one('#selected-stops-list')

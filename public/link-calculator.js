@@ -5,9 +5,7 @@ let grab_stop_information = () => {
     let stops_list = many(".selected-stop")
     for(stop of stops_list) {
         let stop_id = stop.attributes['data-stop-id'].value
-        let stop_type = stop.querySelector(".stop-type-select").value
-        let this_part = stop_id + ":" + stop_type;
-        stops_ary.push(this_part);
+        stops_ary.push(stop_id);
     }
 
     if( stops_ary.length > 0 ) {
