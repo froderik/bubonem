@@ -1,13 +1,8 @@
-GIT
-  remote: https://github.com/mikereedell/sunrisesunset-ruby
-  revision: a6d3a592152e69820bae8ee3714eaafd0e1048b7
-  specs:
-    RubySunrise (0.3.3)
-      tzinfo
-
 GEM
   remote: https://rubygems.org/
   specs:
+    RubySunrise (0.3.3)
+      tzinfo
     concurrent-ruby (1.1.7)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -54,7 +49,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  RubySunrise!
+  RubySunrise
   haml
   rest-client
   sinatra
