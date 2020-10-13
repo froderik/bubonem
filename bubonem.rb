@@ -126,7 +126,7 @@ module ParamsHandling
   
   def parse_stops stops_param
     stops = stops_param
-    stops ||= '9143:tub,1577'
+    stops ||= '9143,1577'
     stops.split ','
   end
 
@@ -155,7 +155,7 @@ class Bubonem < Sinatra::Base
   ###################################
   
   get '/' do
-    haml :index, locals: {scripts: ['add-stop', 'link-calculator']} ,layout: :layout
+    haml :index, locals: {scripts: ['add-stop', 'link-calculator']}, layout: :layout
   end
 
   get '/dash' do
