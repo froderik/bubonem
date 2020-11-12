@@ -1,7 +1,4 @@
 # coding: utf-8
-require 'sinatra'
-require 'json'
-require 'solareventcalculator'
 
 LAT = '59.29'
 LON = '18.11'
