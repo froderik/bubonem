@@ -77,7 +77,7 @@ end
 #
 # the forecast is updated once an hour
 module WeatherForecast
-    OneForecast = Struct.new :time, :celsius, :symbol do
+  OneForecast = Struct.new :time, :celsius, :symbol do
     def day_or_night
       time.day_or_night?
     end
