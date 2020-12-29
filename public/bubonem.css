@@ -15,6 +15,7 @@ a {
 
 .all, .main {
     display: flex;
+    justify-content: center;
 }
 
 .all {
