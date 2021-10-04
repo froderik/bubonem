@@ -15,13 +15,22 @@ module SMHI
       params = one_point_in_time['parameters']
       forecast = OneForecast.new
       forecast.time = DateTime.parse( one_point_in_time['validTime'] )
-      forecast.celsius = find_value 't', params
-      forecast.symbol = find_value 'Wsymb2', params
+      forecast.celsius = find_celsius params
+      forecast.symbol = find_symbol params
       forecast
     end
 
     future_forecasts = all_forecasts.select { |forecast| forecast.time.is_future? }
     future_forecasts[0..count]
+  end
+
+  def find_celsius params
+    find_value 't', params
+  end
+  
+  def find_symbol params
+    symbol = find_value 'Wsymb2', params
+    symbol.to_i
   end
 
   def find_value name, params
