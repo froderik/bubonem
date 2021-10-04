@@ -52,7 +52,7 @@ module CommuteInformation
     stop_type ||= 'bus'
 
     # this endpoint was found by inspecting SLs travel planner
-    response = RestClient.get "https://webcloud.sl.se/api/departures?mode=departures&origId=#{stop_id}"
+    response = RestClient.get "https://webcloud.sl.se/api/v2/departures?mode=departures&origSiteId=#{stop_id}"
     departures = JSON.parse response
 
     if departures.empty?
