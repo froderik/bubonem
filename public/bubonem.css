@@ -34,6 +34,11 @@ header {
     background-color: darkblue;		
 }
 
+.footer {
+    margin: 0px auto;
+    font-size: 200px;
+}
+
 .stop_header {
     font-size: 36px;
 }

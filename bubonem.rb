@@ -144,7 +144,8 @@ class Bubonem < Sinatra::Base
   end
 
   get '/current_time' do
-    DateTime.now.in_stockholm.strftime '%Y-%m-%d %k:%M'
+    fmt = params['fmt'] || '%Y-%m-%d %k:%M'
+    DateTime.now.in_stockholm.strftime fmt
   end
 
   get '/sun' do

@@ -11,5 +11,6 @@
         %section.widget{ 'data-timeout': 1, 'data-url': "/stop/#{one_stop}" }
     .column
       %section.widget#weather_forecast{ 'data-timeout': 60, 'data-url': "/weather_forecast?lat=#{lat}&lon=#{lon}" }
-
+  .footer
+    %span.widget{ 'data-timeout': 1, 'data-url': "/current_time?fmt=%25k:%25M" }
 
