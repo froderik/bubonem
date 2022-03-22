@@ -1,7 +1,5 @@
 
 body {
-    background-color: black;
-    color: white;
     height: 800px;
     font-family: 'Fira Mono', 'Courier New',  monospaced;
     font-size: 20px;
@@ -9,7 +7,6 @@ body {
 
 a {
     text-decoration: none;
-    color: lightyellow;
     cursor: pointer;
 }
 
@@ -25,13 +22,6 @@ a {
 section, header, iframe {
     margin: 10px;
     padding: 20px;
-    background-color: darkred;
-    border-radius: 20px;
-    border: black;
-}
-
-header {
-    background-color: darkblue;		
 }
 
 .footer {
@@ -53,14 +43,6 @@ td {
 
 .symbol img {
     width: 40px;
-}
-
-#commuting {
-    background-color: darkred;
-}
-
-#weather_forecast {
-    background-color: darkgreen;
 }
 
 #sun {
@@ -106,10 +88,6 @@ input, button, select  {
 
 .map-size-selector {
     margin-bottom: 20px;
-}
-
-.your-link {
-    background-color: darkslategray;
 }
 
 h1 {

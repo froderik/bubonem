@@ -1,0 +1,37 @@
+body {
+    background-color: black;
+    color: white;
+    /* font-family 
+       font-size */
+}
+
+a {
+    /* text-decoration
+       cursor */
+    color: lightyellow;
+}
+
+section, header, iframe {
+    background-color: darkred;
+    border-radius: 20px;
+    border: black;
+}
+
+
+header {
+    background-color: darkblue;		
+}
+
+/* overrides section */
+#commuting {
+    background-color: darkred;
+}
+
+#weather_forecast {
+    background-color: darkgreen;
+}
+
+.your-link {
+    background-color: darkslategray;
+}
+
