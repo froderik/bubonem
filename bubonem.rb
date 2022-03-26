@@ -88,6 +88,7 @@ module ParamsHandling
     result = {}
     result[:stops] = parse_stops params['stops']
     result[:lat], result[:lon] = parse_coordinates params
+    result[:ornament] = params.fetch(:ornament, 'classic')
 
     result
   end
@@ -123,7 +124,10 @@ class Bubonem < Sinatra::Base
   ###################################
   
   get '/' do
-    haml :index, locals: {scripts: ['add-stop', 'link-calculator']}, layout: :layout
+    scripts = ['add-stop', 'link-calculator']
+    ornament = params.fetch(:ornament, 'classic')
+    locals = {scripts: scripts, ornament: ornament}
+    haml :index, locals: locals, layout: :layout
   end
 
   get '/dash' do
