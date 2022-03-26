@@ -1,8 +1,7 @@
 body {
     background-color: black;
     color: #444;
-    /* font-family 
-       font-size */
+    font-family: 'Syne Mono', 'Courier New',  monospaced;
 }
 
 a {
