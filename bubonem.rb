@@ -95,7 +95,7 @@ module ParamsHandling
   
   def parse_stops stops_param
     stops = stops_param
-    stops ||= '9143,1577'
+    stops ||= '9180,1916,1912,1901'
     stops.split ','
   end
 
