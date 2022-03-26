@@ -1,0 +1,25 @@
+body {
+    background-color: black;
+    color: #444;
+    /* font-family 
+       font-size */
+}
+
+a {
+    /* text-decoration
+       cursor */
+    color: lightyellow;
+}
+
+section, header, iframe {
+    background-color: #111;
+    border-radius: 2px;
+    border: #222;
+}
+
+hr {
+    color: #222;
+}
+
+
+
