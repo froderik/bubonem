@@ -1,0 +1,24 @@
+body {
+    background-color: #181818;
+    color: #03A062;
+    font-family: 'Syne Mono', 'Courier New',  monospaced;
+}
+
+a {
+    /* text-decoration
+       cursor */
+    color: lightyellow;
+}
+
+section, header, iframe {
+    background-color: #000;
+    border-radius: 2px;
+    border: solid #333;
+}
+
+hr {
+    color: #222;
+}
+
+
+
