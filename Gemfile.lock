@@ -6,6 +6,7 @@ GEM
     concurrent-ruby (1.1.9)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.8.1)
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
@@ -50,6 +51,7 @@ PLATFORMS
 
 DEPENDENCIES
   RubySunrise
+  dotenv
   haml
   rest-client
   sinatra

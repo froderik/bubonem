@@ -12,3 +12,5 @@ nimcache
 log
 tmp
 
+# dotenv
+.env

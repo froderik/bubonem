@@ -1,6 +1,6 @@
 %ul
   - station_list.each do |one_station|
     %li
-      %a.one-stop-to-select{ "data-stop-id": one_station["siteId"], title: "Klicka för att välja" }
-        = one_station["name"]
+      %a.one-stop-to-select{ "data-stop-id": one_station["SiteId"], title: "Klicka för att välja" }
+        = one_station["Name"]
   
