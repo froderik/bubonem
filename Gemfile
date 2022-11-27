@@ -17,3 +17,6 @@ gem 'RubySunrise'
 
 # we run unicorn in production
 gem 'unicorn'
+
+# for secrets outside of the code
+gem 'dotenv'
