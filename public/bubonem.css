@@ -78,12 +78,10 @@ td {
 }
 
 input, button, select  {
-    height: 42px;
     border-radius: 5px;
     padding: 10px;
     font-family: 'Fira Mono', 'Courier New', monospaced;
-    font-weight: bold;
-    
+    font-weight: bold;    
 }
 
 .map-size-selector {
@@ -111,4 +109,8 @@ h1 {
 
 .stop-type-select {
     width: 30%;
+}
+
+section div {
+    margin-top: 10px;
 }
