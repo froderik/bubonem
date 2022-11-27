@@ -51,14 +51,21 @@ module CommuteInformation
     stop_id, stop_type = stop_description.split ':'
     stop_type ||= 'bus'
 
-    # this endpoint was found by inspecting SLs travel planner
-    response = RestClient.get "https://webcloud.sl.se/api/v2/departures?mode=departures&origSiteId=#{stop_id}"
-    departures = JSON.parse response
+    api_key = ENV['SL_API_KEY_DEPARTURES']
+    
+    response = RestClient.get "https://api.sl.se/api2/realtimedeparturesV4.json?key=#{api_key}&siteid=#{stop_id}&timewindow=60"
+    departures = JSON.parse( response )['ResponseData']
+    joined_departures = departures['Metros'] +
+                        departures['Buses'] +
+                        departures['Trains'] +
+                        departures['Ships'] +
+                        departures['Trams']
+    sorted_departures = joined_departures.sort_by { |d| d['ExpectedDateTime'] }
 
-    if departures.empty?
+    if sorted_departures.empty?
       "Inga avgångar finns för hållplats #{stop_id}"
     else
-      haml :stop_information, locals: { departures: departures }
+      haml :stop_information, locals: { departures: sorted_departures }
     end
   end
 
