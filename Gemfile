@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'sinatra'
 
 # haml for readable templates free of HTML
-gem 'haml', '~> 5'
+gem 'haml', '~> 6'
 
 # we need to call some endpoints to get data
 gem 'rest-client'

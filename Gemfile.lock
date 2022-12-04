@@ -7,8 +7,9 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.8.1)
-    haml (5.2.2)
-      temple (>= 0.8.0)
+    haml (6.0.12)
+      temple (>= 0.8.2)
+      thor
       tilt
     http-accept (1.7.0)
     http-cookie (1.0.5)
@@ -36,6 +37,7 @@ GEM
       rack-protection (= 3.0.4)
       tilt (~> 2.0)
     temple (0.9.1)
+    thor (1.2.1)
     tilt (2.0.11)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
@@ -52,7 +54,7 @@ PLATFORMS
 DEPENDENCIES
   RubySunrise
   dotenv
-  haml (~> 5)
+  haml (~> 6)
   rest-client
   sinatra
   tzinfo
