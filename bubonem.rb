@@ -54,6 +54,11 @@ module CommuteInformation
     api_key = ENV['SL_API_KEY_DEPARTURES']
     
     response = RestClient.get "https://api.sl.se/api2/realtimedeparturesV4.json?key=#{api_key}&siteid=#{stop_id}&timewindow=60"
+
+    unless response.code == 200
+      return "Problem med kod #{response.code} från API"
+    end
+    
     departures = JSON.parse( response )['ResponseData']
     joined_departures = departures['Metros'] +
                         departures['Buses'] +
