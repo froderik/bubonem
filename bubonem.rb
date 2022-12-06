@@ -137,7 +137,7 @@ class Bubonem < Sinatra::Base
   
   get '/' do
     scripts = ['add-stop', 'link-calculator']
-    ornament = params.fetch(:ornament, 'classic')
+    ornament = params.fetch(:ornament, 'matrix')
     locals = {scripts: scripts, ornament: ornament}
     haml :index, locals: locals, layout: :layout
   end
