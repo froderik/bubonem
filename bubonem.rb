@@ -65,7 +65,7 @@ module CommuteInformation
                         departures['Trains'] +
                         departures['Ships'] +
                         departures['Trams']
-    sorted_departures = joined_departures.sort_by { |d| d['ExpectedDateTime'] }
+    sorted_departures = joined_departures.sort_by { |d| d['ExpectedDateTime'] or d['TimeTabledDateTime'] }
 
     if sorted_departures.empty?
       "Inga avgångar finns för hållplats #{stop_id}"
