@@ -128,7 +128,7 @@ class Bubonem < Sinatra::Base
 
   # turns off the default layout - now needs to be set
   # explicitly by the routes that are using it
-  set :haml, layout: false
+  set :haml, layout: false, escape_html: false
 
 
   ###################################
