@@ -3,7 +3,7 @@ GEM
   specs:
     RubySunrise (0.3.3)
       tzinfo
-    concurrent-ruby (1.1.10)
+    concurrent-ruby (1.2.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.8.1)
@@ -39,7 +39,7 @@ GEM
     temple (0.9.1)
     thor (1.2.1)
     tilt (2.0.11)
-    tzinfo (2.0.5)
+    tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
       unf_ext
