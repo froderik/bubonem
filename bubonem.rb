@@ -58,8 +58,12 @@ module CommuteInformation
     unless response.code == 200
       return "Problem med kod #{response.code} från API"
     end
-    
-    departures = JSON.parse( response )['ResponseData']
+
+    parsed_response = JSON.parse( response )
+    departures = parsed_response['ResponseData']
+    unless departures
+      return "No departures\n#{response}"
+    end
     joined_departures = departures['Metros'] +
                         departures['Buses'] +
                         departures['Trains'] +
