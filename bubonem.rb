@@ -82,7 +82,7 @@ module CommuteInformation
   def stations_by_name query
     escaped_query = CGI.escape query
     api_key = ENV['SL_API_KEY_SEARCH']
-    RestClient.get "https://api.sl.se/api2/typeahead.json?key=#{api_key}&searchstring=#{escaped_query}"
+    RestClient.get "https://journeyplanner.integration.sl.se/v1/typeahead.json?key=TRAFIKLAB-SLAPI-INTEGRATION-2024&searchstring=#{escaped_query}"
   end
 end
 
