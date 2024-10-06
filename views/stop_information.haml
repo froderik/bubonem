@@ -1,9 +1,9 @@
 .stop_header
-  %span.stop_name= departures[0]['StopAreaName']
+  %span.stop_name= departures[0]['stop_area']['name']
 .departures
   %table
     - departures[0...17].each do |one_departure|
       %tr.one_departure
-        %td.arrival_time= one_departure['DisplayTime']
-        %td.line= one_departure['LineNumber']
-        %td.destination= one_departure['Destination']      
+        %td.arrival_time= one_departure['display']
+        %td.line= one_departure['desgination']
+        %td.destination= one_departure['destination']

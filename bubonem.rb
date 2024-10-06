@@ -54,23 +54,18 @@ module CommuteInformation
 
     api_key = ENV['SL_API_KEY_DEPARTURES']
     
-    response = RestClient.get "https://api.sl.se/api2/realtimedeparturesV4.json?key=#{api_key}&siteid=#{stop_id}&timewindow=60"
+    response = RestClient.get "https://transport.integration.sl.se/v1/sites/#{stop_id}/departures"
 
     unless response.code == 200
       return "Problem med kod #{response.code} från API"
     end
 
     parsed_response = JSON.parse( response )
-    departures = parsed_response['ResponseData']
+    departures = parsed_response['departures']
     unless departures
       return "No departures\n#{response}"
     end
-    joined_departures = departures['Metros'] +
-                        departures['Buses'] +
-                        departures['Trains'] +
-                        departures['Ships'] +
-                        departures['Trams']
-    sorted_departures = joined_departures.sort_by { |d| d['ExpectedDateTime'] or d['TimeTabledDateTime'] }
+    sorted_departures = departures.sort_by { |d| d['expected'] or d['scheduled'] }
 
     if sorted_departures.empty?
       "Inga avgångar finns för hållplats #{stop_id}"
@@ -81,8 +76,8 @@ module CommuteInformation
 
   def stations_by_name query
     escaped_query = CGI.escape query
-    api_key = ENV['SL_API_KEY_SEARCH']
-    RestClient.get "https://journeyplanner.integration.sl.se/v1/typeahead.json?key=TRAFIKLAB-SLAPI-INTEGRATION-2024&searchstring=#{escaped_query}"
+    url = 'journeyplanner.integration.sl.se/v1/typeahead.json'
+    RestClient.get "https://#{url}?key=TRAFIKLAB-SLAPI-INTEGRATION-2024&searchstring=#{escaped_query}"
   end
 end
 
