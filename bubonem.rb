@@ -3,6 +3,7 @@
 LAT = '59.29'
 LON = '18.11'
 ZONE = 'Europe/Stockholm'
+ORNAMENT = 'matrix'
 
 module SunMachine
   def sunrise date = Date.today
@@ -100,11 +101,15 @@ module WeatherForecast
 end
 
 module ParamsHandling
+  def ornament
+    params.fetch(:ornament, ORNAMENT)
+  end
+
   def parse params
     result = {}
     result[:stops] = parse_stops params['stops']
     result[:lat], result[:lon] = parse_coordinates params
-    result[:ornament] = params.fetch(:ornament, 'classic')
+    result[:ornament] = ornament
 
     result
   end
@@ -141,7 +146,6 @@ class Bubonem < Sinatra::Base
   
   get '/' do
     scripts = ['add-stop', 'link-calculator']
-    ornament = params.fetch(:ornament, 'matrix')
     locals = {scripts: scripts, ornament: ornament}
     haml :index, locals: locals, layout: :layout
   end
