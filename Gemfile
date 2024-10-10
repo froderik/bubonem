@@ -1,7 +1,11 @@
+
 source 'https://rubygems.org'
 
-# sintra is a micro web framework
+# sinatra is a micro web framework
 gem 'sinatra'
+
+# rackup to run the stuff
+gem 'rackup'
 
 # haml for readable templates free of HTML
 gem 'haml'
