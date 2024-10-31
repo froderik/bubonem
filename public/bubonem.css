@@ -114,3 +114,7 @@ h1 {
 section div {
     margin-top: 10px;
 }
+
+.one-departure .line {
+    text-align: right;
+}

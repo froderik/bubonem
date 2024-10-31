@@ -3,7 +3,7 @@
 .departures
   %table
     - departures[0...17].each do |one_departure|
-      %tr.one_departure
-        %td.arrival_time= one_departure['display']
+      %tr.one-departure
+        %td.arrival-time= one_departure['display']
         %td.line= one_departure['line']['designation']
         %td.destination= one_departure['destination']
